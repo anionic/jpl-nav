@@ -206,7 +206,7 @@
 			</style>
 			<script type="text/javascript">
 				document.addEventListener('DOMContentLoaded', function(event) {
-					document.querySelector('nav > a')[0].addEventListener('click', function(event) {
+					document.querySelector('nav > a').addEventListener('click', function(event) {
 						document.querySelector('nav > ul').classList.toggle('open');
 						event.stopPropagation();
 						event.preventDefault();
