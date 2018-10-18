@@ -75,6 +75,9 @@
 				@media all and (max-width: 800px) {
 					nav > a {
 						display: block; /* show below 800px */
+						position: fixed; /* lest viewport is narrower than bodybar */
+						right: 0; /* its margin will offset it */
+						top: 0;
 					}
 				}
 				@media all and (max-width: 400px) {
@@ -108,14 +111,14 @@
 				nav > ul { /* main menu, in sidebar style */
 					background: #FFFFFF;
 					border: 1px solid #808080;
+					border-radius: 5px;
 					display: table;
-					font-weight: bold;
-					right: 10px;
+					right: 0;
 					list-style: none;
 					margin: 0 0 0 0;
 					padding: 0 0 0 0;
 					position: absolute; /* within bodybar */
-					top: 50px; /* below bodybar */
+					top: 55px; /* 5px below bodybar */
 				}
 				@media all and (max-width: 800px) {
 					nav > ul { /* main menu, in drop-down style */
@@ -159,6 +162,10 @@
 					margin: 0 0 0 0;
 					padding: 3px 10px 3px 10px;
 					text-decoration: none;
+				}
+				nav > ul > li > a.level2 { /* main menu item content, in sidebar style */
+					font-size: 85%;
+					padding-left: 10px;
 				}
 				nav > ul > li > a:focus {
 					outline: 1px solid #FFC0C0; /* thinner focus outline looks better against (nearly) black background */
