@@ -35,9 +35,6 @@
 					visibility: hidden; /* superstition? */
 					width: 0;
 				}
-				body {
-					color: #FF0000;
-				}
 				.bodybarX {
 					position: fixed; /* doesn't scroll with content */
 					top: 0; /* at very top of viewport */
@@ -59,6 +56,10 @@
 					.bodybar {
 						max-width: 400px; /* was just width */
 					}
+				}
+				.bodybar > span {
+					font-size: 250%;
+					color: #000080;
 				}
 				nav > a { /* menu burger icon */
 					background: #FFFFFF;
@@ -104,17 +105,15 @@
 				nav > a:hover > span {
 					color: #FF0000;
 				}
-				nav > ul { /* main menu, in spread-out style */
-					background-color: transparent;
+				nav > ul { /* main menu, in sidebar style */
 					display: table;
 					font-weight: bold;
-					left: 280px;
+					right: 10px;
 					list-style: none;
 					margin: 0 0 0 0;
 					padding: 0 0 0 0;
 					position: absolute; /* within bodybar */
-					text-align: center;
-					top: 7px;
+					top: 50px;
 				}
 				@media all and (max-width: 800px) {
 					nav > ul { /* main menu, in drop-down style */
@@ -134,9 +133,9 @@
 					}
 				}
 				nav > ul > li { /* main menu item, in spread-out style */
-					display: inline-block; /* until selectively offered with inline-block */
+					display: block;
 					list-style: none;
-					text-align: left; /* redundant? */
+					text-align: left;
 				}
 				nav > ul > li > button.current { /* selected main menu item content */
 					text-decoration: underline; /* highlights the nav item most relevant to the pagelet currently shown */
@@ -226,6 +225,7 @@
 		<body>
 			<div class="bodybarX">
 				<div class="bodybar">
+					<span>jpl7.org</span>
 					<nav class="nav">
 						<a href="#">
 							<div></div>
