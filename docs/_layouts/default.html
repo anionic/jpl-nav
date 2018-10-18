@@ -14,7 +14,7 @@
 					z-index: 2; /* show above subsequent (in HTML) content */
 				}
 				.bodybar {
-				 /*	background-image: url(../img/etn/header3.png); /* moved into Prolog for pseudoversioning */
+					background-color: #E0E0FF;
 					background-position: left top;
 					background-repeat: no-repeat;
 					height: 83px;
@@ -159,6 +159,25 @@
 						color: #FF0000;
 					}
 				}
+				/* mainbar ***************************************************************************************/
+
+					.mainbarX {
+						z-index: 1; /* beneath earlier bodybar */
+					}
+
+					.mainbar {
+						background-color: #FFFFFF;
+						font-size: 85%;
+						margin: 0 auto 0 auto; /* horiz centred */
+						padding: 0 10px 0 10px;
+						max-width: 820px;
+					}
+
+					@media all and (max-width: 800px) {
+						.mainbar {
+							max-width: 400px; /* was just width */
+						}
+					}
 			</style>
 		</head>
 		<body>
