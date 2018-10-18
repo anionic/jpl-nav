@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+	<html>
+		<head>
+			<title>{{ page.title }}</title>
+			<style>
+				body {
+					color: #FF0000;
+				}
+				.bodybarX {
+					position: fixed; /* doesn't scroll with content */
+					top: 0; /* at very top of viewport */
+					left: 0; /* full width from here... */
+					right: 0; /* ...to here */
+					z-index: 2; /* show above subsequent (in HTML) content */
+				}
+				.bodybar {
+				 /*	background-image: url(../img/etn/header3.png); /* moved into Prolog for pseudoversioning */
+					background-position: left top;
+					background-repeat: no-repeat;
+					height: 83px;
+					margin: 0 auto 0 auto; /* horiz centred */
+					max-width: 820px;
+					padding: 0 10px 0 10px;
+					position: relative;
+				}
+				@media all and (max-width: 800px) {
+					.bodybar {
+						max-width: 400px; /* was just width */
+					}
+				}
+				nav > a { /* menu burger icon */
+					background: #FFFFFF;
+					cursor: pointer; /* redundant? */
+					display: none; /* shown only below 800px width */
+					float: right; /* at RH of bodybar, but see below */
+					height: 43px; /* gross 50px */
+					margin: 7px 7px 0 0;
+					padding: 7px 0 0 0;
+					text-decoration: none;
+					width: 50px;
+				}
+				@media all and (max-width: 800px) {
+					nav > a {
+						display: block; /* show below 800px */
+					}
+				}
+				@media all and (max-width: 400px) {
+					nav > a {
+						position: fixed; /* lest viewport is narrower than bodybar */
+						right: 0; /* its margin will offset it */
+					}
+				}
+				nav > a:hover {
+					background-color: #C0C0C0;
+				}
+				nav > a > div { /* each of three bars for "burger" icon lookalike */
+					background-color: #0067D8;
+					height: 3px;
+					margin: 3px auto 0 auto;
+					width: 18px;
+				}
+				nav > a:hover > div {
+					background-color: #FF0000;
+				}
+				nav > a > span { /* the word "menu", in case it isn't obvious ;-) */
+					color: #0067D8;
+					display: block;
+					font-size: 12px;
+					padding: 5px 0 0 0;
+					text-align: center;
+				}
+				nav > a:hover > span {
+					color: #FF0000;
+				}
+				nav > ul { /* main menu, in spread-out style */
+					background-color: transparent;
+					display: table;
+					font-weight: bold;
+					left: 280px;
+					list-style: none;
+					margin: 0 0 0 0;
+					padding: 0 0 0 0;
+					position: absolute; /* within bodybar */
+					text-align: center;
+					top: 7px;
+				}
+				@media all and (max-width: 800px) {
+					nav > ul { /* main menu, in drop-down style */
+						background-color: #C7DC76; /* was F4F4F4 */
+						border-top: 1px solid #000000;
+						display: none; /* normally hidden */
+						left: auto;
+						list-style: none outside none;
+						margin: 0 0 0 0;
+						padding: 0 0 0 0;
+						right: 0; /* was 5px */
+						top: 60px;
+						width: 100%; /* was 70% */
+					}
+					nav > ul.open {
+						display: block;
+					}
+				}
+				nav > ul > li { /* main menu item, in spread-out style */
+					display: inline-block; /* until selectively offered with inline-block */
+					list-style: none;
+					text-align: left; /* redundant? */
+				}
+				nav > ul > li > button.current { /* selected main menu item content */
+					text-decoration: underline; /* highlights the nav item most relevant to the pagelet currently shown */
+				}
+				@media all and (max-width: 800px) {
+					nav > ul > li { /* main menu item, in drop-down style */
+						border-bottom: 1px solid #000000;
+						display: block;
+						text-align: center;
+					}
+					nav > ul > li > button.current { /* selected main menu item content */
+						text-decoration: none; /* don't highlight the nav item most relevant to the pagelet currently shown, at least not this way */
+					}
+				}
+				nav > ul > li > button { /* main menu item content, in spread-out style */
+					background: transparent;
+					border-color: transparent;
+					color: #FFFFFF; /* white, against black of banner image */
+					cursor: pointer;
+					display: block; /* enable all-round padding control */
+					font-size: 100%;
+					font-weight: bold;
+					margin: 0 0 0 0;
+					padding: 3px 10px 3px 10px;
+					text-decoration: none;
+				}
+				nav > ul > li > button:focus {
+					outline: 1px solid #FFC0C0; /* thinner focus outline looks better against (nearly) black background */
+				}
+				.extLinks > ul > li > a:focus,
+				input#etn2HomeSchoolName:focus,
+				input#homePostcode:focus,
+				button#homePostcodeSubmit:focus,
+				.tailbar > ul > li > a:focus {
+					outline: 2px solid #FFC0C0;
+				}
+				@media all and (max-width: 800px) {
+					nav > ul > li > button { /* main menu item content, in drop-down style */
+						border-bottom: 1px solid #ccc;
+						color: #0067D8; /* same blue as icon bars, text */
+						padding: 10px 0 10px 0;
+						width: 100%;
+					}
+				}
+				nav > ul > li > button:hover {
+					background-color: #FFD0D0;
+					color: #FF4040;
+				}
+				@media all and (max-width: 800px) {
+					nav > ul > li > button:hover { /* as for icon */
+						background-color: #C0C0C0;
+						color: #FF0000;
+					}
+				}
+			</style>
+		</head>
+		<body>
+			<div class="bodybarX">
+				<div class="bodybar">
+					<nav class="nav">
+						<a href="#">
+							<div></div>
+							<div></div>
+							<div></div>
+							<span>menu</span>
+						</a>
+						<ul>
+							<li class="hid navLinks"><button data-ano="6">links</button></li>
+							<li class="hid navSchool no"><button data-ano="0">school</button></li>
+							<li class="hid navSchool yes"><button data-ano="1">school</button></li>
+							<li class="hid navBuses"><button data-ano="2">buses</button></li>
+							<li class="hid navPlan no"><button data-ano="7">journey</button></li>
+							<li class="hid navPlan yes"><button data-ano="3">journey</button></li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+			<div class="mainbarX">
+				<div class="mainbar">
+					{{ content }}
+				</div>
+			</div>
+			<div class="tailbarX">
+				<div class="tailbar">
+					dummy tailbar content
+				<div>		
+			</div>
+		</body>
+</html>
