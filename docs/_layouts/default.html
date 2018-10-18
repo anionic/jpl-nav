@@ -66,11 +66,9 @@
 					cursor: pointer; /* redundant? */
 					display: none; /* shown only below 800px width */
 					float: right; /* at RH of bodybar, but see below */
-					height: 43px; /* gross 50px */
 					margin: 2px 2px 0 0;
-					padding: 4px 0 0 0;
+					padding: 4px 0 2px 0;
 					text-decoration: none;
-					width: 50px;
 				}
 				@media all and (max-width: 800px) {
 					nav > a {
@@ -206,6 +204,19 @@
 					}
 				}
 			</style>
+			<script type="text/javascript">
+				document.addEventListener('DOMContentLoaded', function(event) {
+					document.querySelector('nav > a')[0].addEventListener('click', function(event) {
+						document.querySelector('nav > ul').classList.toggle('open');
+						event.stopPropagation();
+						event.preventDefault();
+					});
+					document.querySelector('body').addEventListener('click', function(event) {
+						document.querySelector('nav > ul').classList.remove('open');
+					});
+					document.querySelector('bodybarX,.mainbarX').addListener('click', function() {});
+				});
+			</script>
 		</head>
 		<body>
 			<div class="bodybarX">
