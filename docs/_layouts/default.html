@@ -67,8 +67,8 @@
 					display: none; /* shown only below 800px width */
 					float: right; /* at RH of bodybar, but see below */
 					height: 43px; /* gross 50px */
-					margin: 5px 5px 0 0;
-					padding: 5px 0 0 0;
+					margin: 2px 2px 0 0;
+					padding: 4px 0 0 0;
 					text-decoration: none;
 					width: 50px;
 				}
@@ -78,12 +78,6 @@
 						position: fixed; /* lest viewport is narrower than bodybar */
 						right: 0; /* its margin will offset it */
 						top: 0;
-					}
-				}
-				@media all and (max-width: 400px) {
-					nav > a {
-						position: fixed; /* lest viewport is narrower than bodybar */
-						right: 0; /* its margin will offset it */
 					}
 				}
 				nav > a:hover {
@@ -101,7 +95,7 @@
 				nav > a > span { /* the word "menu", in case it isn't obvious ;-) */
 					color: #0067D8;
 					display: block;
-					font-size: 12px;
+					font-size: 10px;
 					padding: 3px 0 0 0;
 					text-align: center;
 				}
@@ -137,13 +131,10 @@
 						display: block;
 					}
 				}
-				nav > ul > li { /* main menu item, in spread-out style */
+				nav > ul > li { /* main menu item, in sidebar style */
 					display: block;
 					list-style: none;
 					text-align: left;
-				}
-				nav > ul > li > button.current { /* selected main menu item content */
-					text-decoration: underline; /* highlights the nav item most relevant to the pagelet currently shown */
 				}
 				@media all and (max-width: 800px) {
 					nav > ul > li { /* main menu item, in drop-down style */
@@ -165,7 +156,7 @@
 				}
 				nav > ul > li.level2 > a { /* main menu item content, in sidebar style */
 					font-size: 85%;
-					padding-left: 10px;
+					padding-left: 25px;
 				}
 				nav > ul > li > a:focus {
 					outline: 1px solid #FFC0C0; /* thinner focus outline looks better against (nearly) black background */
@@ -179,8 +170,8 @@
 					}
 				}
 				nav > ul > li > a:hover {
-					background-color: #FFD0D0;
-					color: #FF4040;
+					background-color: #F0F0F0;
+					text-decoration: underline;
 				}
 				@media all and (max-width: 800px) {
 					nav > ul > li > a:hover { /* as for icon */
