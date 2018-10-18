@@ -148,12 +148,11 @@
 						display: block;
 						text-align: center;
 					}
-					nav > ul > li > button.current { /* selected main menu item content */
+					nav > ul > li > a.current { /* selected main menu item content */
 						text-decoration: none; /* don't highlight the nav item most relevant to the pagelet currently shown, at least not this way */
 					}
 				}
-				nav > ul > li > button { /* main menu item content, in spread-out style */
-					colorQ: #FFFFFF; /* white, against black of banner image */
+				nav > ul > li > a { /* main menu item content, in sidebar style */
 					cursor: pointer;
 					display: block; /* enable all-round padding control */
 					font-size: 100%;
@@ -161,30 +160,23 @@
 					padding: 3px 10px 3px 10px;
 					text-decoration: none;
 				}
-				nav > ul > li > button:focus {
+				nav > ul > li > a:focus {
 					outline: 1px solid #FFC0C0; /* thinner focus outline looks better against (nearly) black background */
 				}
-				.extLinks > ul > li > a:focus,
-				input#etn2HomeSchoolName:focus,
-				input#homePostcode:focus,
-				button#homePostcodeSubmit:focus,
-				.tailbar > ul > li > a:focus {
-					outline: 2px solid #FFC0C0;
-				}
 				@media all and (max-width: 800px) {
-					nav > ul > li > button { /* main menu item content, in drop-down style */
+					nav > ul > li > a { /* main menu item content, in drop-down style */
 						border-bottom: 1px solid #ccc;
 						color: #0067D8; /* same blue as icon bars, text */
 						padding: 10px 0 10px 0;
 						width: 100%;
 					}
 				}
-				nav > ul > li > button:hover {
+				nav > ul > li > a:hover {
 					background-color: #FFD0D0;
 					color: #FF4040;
 				}
 				@media all and (max-width: 800px) {
-					nav > ul > li > button:hover { /* as for icon */
+					nav > ul > li > a:hover { /* as for icon */
 						background-color: #C0C0C0;
 						color: #FF0000;
 					}
@@ -229,12 +221,15 @@
 							<span>menu</span>
 						</a>
 						<ul>
-							<li class="hid navLinks"><button data-ano="6">links</button></li>
-							<li class="hid navSchool no"><button data-ano="0">school</button></li>
-							<li class="hid navSchool yes"><button data-ano="1">school</button></li>
-							<li class="hid navBuses"><button data-ano="2">buses</button></li>
-							<li class="hid navPlan no"><button data-ano="7">journey</button></li>
-							<li class="hid navPlan yes"><button data-ano="3">journey</button></li>
+							<li class="level1"><a href="PrologApiOverview">Prolog API</a></li>
+							<li class="level2"><a href="PrologApiOverview">overview</a></li>
+							<li class="level2"><a href="PrologApiReference">reference</a></li>
+							<li class="level1"><a href="1">Java API</a></li>
+							<li class="level2"><a href="2">overview</a></li>
+							<li class="level2"><a href="7">JavaDoc</a></li>
+							<li class="level1"><a href="1">Release notes</a></li>
+							<li class="level2"><a href="3">7.4.0</a></li>
+							<li class="level2"><a href="3">7.0.1</a></li>
 						</ul>
 					</nav>
 				</div>
