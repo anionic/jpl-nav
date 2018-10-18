@@ -66,8 +66,8 @@
 					cursor: pointer; /* redundant? */
 					display: none; /* shown only below 800px width */
 					float: right; /* at RH of bodybar, but see below */
-					margin: 2px 2px 0 0;
-					padding: 4px 0 2px 0;
+					margin: 5px 5px 0 0;
+					padding: 4px 5px 2px 5px;
 					text-decoration: none;
 				}
 				@media all and (max-width: 800px) {
@@ -114,19 +114,19 @@
 				}
 				@media all and (max-width: 800px) {
 					nav > ul { /* main menu, in drop-down style */
-						background-color: #C7DC76; /* was F4F4F4 */
-						border-top: 1px solid #000000;
+						background-colorQ: #C7DC76; /* was F4F4F4 */
+						border-topQ: 1px solid #000000;
 						display: none; /* normally hidden */
-						left: auto;
-						list-style: none outside none;
-						margin: 0 0 0 0;
-						padding: 0 0 0 0;
-						right: 0; /* was 5px */
-						top: 50px;
-						width: 100%; /* was 70% */
+						leftQ: auto;
+						list-styleQ: none outside none;
+						marginQ: 0 0 0 0;
+						paddingQ: 0 0 0 0;
+						rightQ: 0; /* was 5px */
+						topQ: 50px;
+						widthQ: 100%; /* was 70% */
 					}
 					nav > ul.open {
-						display: block;
+						display: table;
 					}
 				}
 				nav > ul > li { /* main menu item, in sidebar style */
