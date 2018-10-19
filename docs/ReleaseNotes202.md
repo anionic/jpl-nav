@@ -52,17 +52,17 @@ These changes are not only for convenience, and to allow development of easy-to-
 ## Java API: miscellaneous changes
 
 ### new constructors:
-```
+```java
 new jpl.Query( Term t)
 ```
 ### withdrawn constructors:
          
 all the multi-argument convenience constructors for Compound etc., since Java 1.1 onwards supports "anonymous arrays" which can (fairly) conveniently be used to create Compounds of any arity, e.g.
-```
+```java
 new Compound( "pair", new Term[] { new Atom("one"), new Atom("two") } )
 ```
 ### new accessor methods:
-```
+```java
 String Compound.name()
 
 int Compound.arity()
@@ -70,7 +70,7 @@ int Compound.arity()
 NB an Atom is a special case of a Compound, and inherits its  name() and an arity() accessors
      
 ### deprecated accessor methods:
-```
+```java
 Compound.atom()
 ```
 (although Prolog conventionally, and necessarily, returns the "name" of a term's principal functor as an atom, this "name" is really a string, and in Java we can represent it as such; the best Prolog can return is "the atom whose name is the same as the name of this compound", whereas we can simply return the name).
@@ -86,6 +86,9 @@ Only one "bug" has been fixed, and this was already flagged by Fred as an issue:
 
 
 Paul Singleton
+
 reformatted Friday 19th October 2018
+
 drafted Tuesday 20th February 2001
+
 revised Thursday 19th April 2001
