@@ -47,11 +47,11 @@
 					color: #000080;
 					margin-left: 10px;
 				}
-				nav > div.icon { /* menu burger icon */
+				.bodybar > div.icon { /* menu burger icon */
 					display: none; /* shown only below 800px viewport width */
 				}
 				@media all and (max-width: 800px) {
-					nav > div.icon {
+					.bodybar > div.icon {
 						background: #FFFFFF;
 						cursor: pointer;
 						display: block; /* show below 800px */
@@ -61,29 +61,29 @@
 						top: 5px;
 					}
 				}
-				nav > div.icon:hover {
+				.bodybar > div.icon:hover {
 					background-color: #C0C0C0;
 				}
-				nav > div.icon > div.bar { /* each of three bars for "burger" icon lookalike */
+				.bodybar > div.icon > div.bar { /* each of three bars for "burger" icon lookalike */
 					background-color: #0067D8;
 					height: 3px;
 					margin: 3px auto 0 auto;
 					width: 18px;
 				}
-				nav > div.icon:hover > div.bar {
+				.bodybar > div.icon:hover > div.bar {
 					background-color: #FF0000;
 				}
-				nav > div.icon > div.legend { /* the word "menu", in case it isn't obvious ;-) */
+				.bodybar > div.icon > div.legend { /* the word "menu", in case it isn't obvious ;-) */
 					color: #0067D8;
 					display: block;
 					font-size: 10px;
 					padding: 3px 0 0 0;
 					text-align: center;
 				}
-				nav > div.icon:hover > div.legend {
+				.bodybar > div.icon:hover > div.legend {
 					color: #FF0000;
 				}
-				nav > ul { /* main menu, in sidebar style */
+				ul.rightbar { /* main menu, in sidebar style */
 					background: #FFFFFF;
 					border: 1px solid #808080;
 					border-radius: 5px;
@@ -96,16 +96,16 @@
 					top: 55px; /* 5px below bodybar */
 				}
 				@media all and (max-width: 800px) {
-					nav > ul.closed { /* main menu, in drop-down style */
+					ul.rightbar.closed { /* main menu, in drop-down style */
 						display: none; /* normally visible */
 					}
 				}
-				nav > ul > li { /* main menu item, in sidebar style */
+				ul.rightbar > li { /* main menu item, in sidebar style */
 					display: block;
 					list-style: none;
 					text-align: left;
 				}
-				nav > ul > li > a { /* main menu item content, in sidebar style */
+				ul.rightbar > li > a { /* main menu item content, in sidebar style */
 					cursor: pointer;
 					display: block; /* enable all-round padding control */
 					font-size: 100%;
@@ -113,14 +113,14 @@
 					padding: 3px 10px 3px 10px;
 					text-decoration: none;
 				}
-				nav > ul > li.level2 > a { /* main menu item content, in sidebar style */
+				ul.rightbar > li.level2 > a { /* main menu item content, in sidebar style */
 					font-size: 85%;
 					padding-left: 25px;
 				}
-				nav > ul > li > a:focus {
+				ul.rightbar > li > a:focus {
 					outline: 1px solid #FFC0C0; /* thinner focus outline looks better against (nearly) black background */
 				}
-				nav > ul > li > a:hover {
+				ul.rightbar > li > a:hover {
 					background-color: #F0F0F0;
 					text-decoration: underline;
 				}
@@ -132,6 +132,9 @@
 					margin: 0 auto 0 auto; /* horiz centred */
 					padding: 0 5px 0 5px;
 					max-width: 990px; /* 1000-(5+5) */
+				}
+				.midbar {
+					max-width: 750px;
 				}
 				.tailbar {
 					background-color: #F0F0F0;
@@ -208,7 +211,7 @@
 			</style>
 			<script type="text/javascript">
 				document.addEventListener('DOMContentLoaded', function(event) {
-					document.querySelector('nav > a').addEventListener('click', function(event) {
+					document.querySelector('nav > div.icon').addEventListener('click', function(event) {
 						document.querySelector('nav > ul').classList.toggle('closed');
 						event.stopPropagation();
 						event.preventDefault();
@@ -224,34 +227,34 @@
 			<div class="bodybarX">
 				<div class="bodybar">
 					<span>JPL 7.4.1</span>
-					<nav class="closed">
-						<div class="icon">
-							<div class="bar"></div>
-							<div class="bar"></div>
-							<div class="bar"></div>
-							<div class="legend">menu</div>
-						</div>
-						<ul>
-							<li class="level1"><a href="PrologApiOverview">Prolog API</a></li>
-							<li class="level2"><a href="PrologApiOverview">overview</a></li>
-							<li class="level2"><a href="PrologApiReference">reference</a></li>
-							<li class="level1"><a href="1">Java API</a></li>
-							<li class="level2"><a href="2">overview</a></li>
-							<li class="level2"><a href="7">JavaDoc</a></li>
-							<li class="level1"><a href="1">Release notes</a></li>
-							<li class="level2"><a href="ReleaseNotes740">7.4.0</a></li>
-							<li class="level2"><a href="3">7.0.1</a></li>
-							<li class="level2"><a href="3">3.0.3</a></li>
-							<li class="level2"><a href="3">3.0.2</a></li>
-							<li class="level2"><a href="3">3.0.0</a></li>
-							<li class="level2"><a href="ReleaseNotes202">2.0.2</a></li>
-						</ul>
-					</nav>
+					<div class="icon">
+						<div class="bar"></div>
+						<div class="bar"></div>
+						<div class="bar"></div>
+						<div class="legend">menu</div>
+					</div>
 				</div>
 			</div>
 			<div class="mainbarX">
 				<div class="mainbar">
-					{{ content }}
+					<div class="midbar">
+						{{ content }}
+					</div>
+					<ul class="closed rightbar">
+						<li class="level1"><a href="PrologApiOverview">Prolog API</a></li>
+						<li class="level2"><a href="PrologApiOverview">overview</a></li>
+						<li class="level2"><a href="PrologApiReference">reference</a></li>
+						<li class="level1"><a href="1">Java API</a></li>
+						<li class="level2"><a href="2">overview</a></li>
+						<li class="level2"><a href="7">JavaDoc</a></li>
+						<li class="level1"><a href="1">Release notes</a></li>
+						<li class="level2"><a href="ReleaseNotes740">7.4.0</a></li>
+						<li class="level2"><a href="3">7.0.1</a></li>
+						<li class="level2"><a href="3">3.0.3</a></li>
+						<li class="level2"><a href="3">3.0.2</a></li>
+						<li class="level2"><a href="3">3.0.0</a></li>
+						<li class="level2"><a href="ReleaseNotes202">2.0.2</a></li>
+					</ul>
 				</div>
 			</div>
 			<div class="tailbarX">
