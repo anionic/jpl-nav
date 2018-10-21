@@ -40,7 +40,7 @@
 					background-color: #E0E0FF;
 					height: 50px;
 					margin: 0 auto 0 auto; /* horiz centred */
-					max-width: 1000px;
+					max-widthQ: 1000px;
 				}
 				.bodybar > span { /* banner text */
 					font-size: 250%;
@@ -131,7 +131,7 @@
 					background-color: #FFFFFF;
 					margin: 0 auto 0 auto; /* horiz centred */
 					padding: 0 5px 0 5px;
-					max-width: 990px; /* 1000-(5+5) */
+					max-widthQ: 990px; /* 1000-(5+5) */
 				}
 				.midbar {
 					max-width: 750px;
@@ -139,7 +139,7 @@
 				.tailbar {
 					background-color: #F0F0F0;
 					margin: 0 auto 0 auto;
-					max-width: 980px; /* 1000-(10+10) */
+					max-widthQ: 980px; /* 1000-(10+10) */
 					padding: 3px 10px 5px 10px;
 				}
 				@media all and (max-width: 800px) {
@@ -211,13 +211,13 @@
 			</style>
 			<script type="text/javascript">
 				document.addEventListener('DOMContentLoaded', function(event) {
-					document.querySelector('nav > div.icon').addEventListener('click', function(event) {
-						document.querySelector('nav > ul').classList.toggle('closed');
+					document.querySelector('.bodybar > div.icon').addEventListener('click', function(event) {
+						document.querySelector('ul.rightbar').classList.toggle('closed');
 						event.stopPropagation();
 						event.preventDefault();
 					});
 					document.querySelector('body').addEventListener('click', function(event) {
-						document.querySelector('nav > ul').classList.add('closed');
+						document.querySelector('ul.rightbar').classList.add('closed');
 					});
 					document.querySelector('.bodybarX,.mainbarX').addEventListener('click', function() {});
 				});
@@ -240,23 +240,23 @@
 					<div class="midbar">
 						{{ content }}
 					</div>
-					<ul class="closed rightbar">
-						<li class="level1"><a href="PrologApiOverview">Prolog API</a></li>
-						<li class="level2"><a href="PrologApiOverview">overview</a></li>
-						<li class="level2"><a href="PrologApiReference">reference</a></li>
-						<li class="level1"><a href="1">Java API</a></li>
-						<li class="level2"><a href="2">overview</a></li>
-						<li class="level2"><a href="7">JavaDoc</a></li>
-						<li class="level1"><a href="1">Release notes</a></li>
-						<li class="level2"><a href="ReleaseNotes740">7.4.0</a></li>
-						<li class="level2"><a href="3">7.0.1</a></li>
-						<li class="level2"><a href="3">3.0.3</a></li>
-						<li class="level2"><a href="3">3.0.2</a></li>
-						<li class="level2"><a href="3">3.0.0</a></li>
-						<li class="level2"><a href="ReleaseNotes202">2.0.2</a></li>
-					</ul>
 				</div>
 			</div>
+			<ul class="closed rightbar">
+				<li class="level1"><a href="PrologApiOverview">Prolog API</a></li>
+				<li class="level2"><a href="PrologApiOverview">overview</a></li>
+				<li class="level2"><a href="PrologApiReference">reference</a></li>
+				<li class="level1"><a href="1">Java API</a></li>
+				<li class="level2"><a href="2">overview</a></li>
+				<li class="level2"><a href="7">JavaDoc</a></li>
+				<li class="level1"><a href="1">Release notes</a></li>
+				<li class="level2"><a href="ReleaseNotes740">7.4.0</a></li>
+				<li class="level2"><a href="3">7.0.1</a></li>
+				<li class="level2"><a href="3">3.0.3</a></li>
+				<li class="level2"><a href="3">3.0.2</a></li>
+				<li class="level2"><a href="3">3.0.0</a></li>
+				<li class="level2"><a href="ReleaseNotes202">2.0.2</a></li>
+			</ul>
 			<div class="tailbarX">
 				<div class="tailbar">
 					page.path={{page.path}}
