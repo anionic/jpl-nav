@@ -1,4 +1,4 @@
-# yes it's play2
+# yes it's play2 (revised)
 
 so what!
 
