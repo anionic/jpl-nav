@@ -19,39 +19,37 @@
 				button { /* button seems not to inherit font-family from body, at least in Firefox */
 					font-family: Arial,Helvetica,sans-serif;
 				}
-				div:after { /* all-div clearfix; forces div bottom edge below floated content */ 
-					clear: both;
-					content: " ";
-					display: block; /* redundant? (default for div) */
-					font-size: 0;
-					height: 0;
-					line-height: 0;
-					visibility: hidden; /* superstition? */
-					width: 0;
+				.mainbar {
+					background-color: #FFFFFF;
+					margin: 0 auto 0 auto; /* horiz centred */
+					padding: 0 205px 0 5px;
 				}
-				.bodybarX { /* full width of viewport */
+				@media all and (max-width: 800px) {
+					.mainbar {
+						padding-right: 5px;
+					}
+				}
+				.headbarX { /* full width of viewport */
 					position: fixed; /* doesn't scroll with content */
 					top: 0; /* at very top of viewport */
 					left: 0; /* full width from here... */
 					right: 0; /* ...to here */
-					z-index: 2; /* show above subsequent (in HTML) content */
 				}
-				.bodybar { /* limited width */
+				.headbar { /* perhaps limited width */
 					background-color: #E0E0FF;
 					height: 50px;
 					margin: 0 auto 0 auto; /* horiz centred */
-					max-widthQ: 1000px;
 				}
-				.bodybar > span { /* banner text */
+				.headbar > span { /* banner text */
 					font-size: 250%;
 					color: #000080;
 					margin-left: 10px;
 				}
-				.bodybar > div.icon { /* menu burger icon */
+				.headbar > div.icon { /* menu burger icon */
 					display: none; /* shown only below 800px viewport width */
 				}
 				@media all and (max-width: 800px) {
-					.bodybar > div.icon {
+					.headbar > div.icon {
 						background: #FFFFFF;
 						cursor: pointer;
 						display: block; /* show below 800px */
@@ -61,29 +59,29 @@
 						top: 5px;
 					}
 				}
-				.bodybar > div.icon:hover {
+				.headbar > div.icon:hover {
 					background-color: #C0C0C0;
 				}
-				.bodybar > div.icon > div.bar { /* each of three bars for "burger" icon lookalike */
+				.headbar > div.icon > div.bar { /* each of three bars for "burger" icon lookalike */
 					background-color: #0067D8;
 					height: 3px;
 					margin: 3px auto 0 auto;
 					width: 18px;
 				}
-				.bodybar > div.icon:hover > div.bar {
+				.headbar > div.icon:hover > div.bar {
 					background-color: #FF0000;
 				}
-				.bodybar > div.icon > div.legend { /* the word "menu", in case it isn't obvious ;-) */
+				.headbar > div.icon > div.legend { /* the word "menu", in case it isn't obvious ;-) */
 					color: #0067D8;
 					display: block;
 					font-size: 10px;
 					padding: 3px 0 0 0;
 					text-align: center;
 				}
-				.bodybar > div.icon:hover > div.legend {
+				.headbar > div.icon:hover > div.legend {
 					color: #FF0000;
 				}
-				ul.rightbar { /* main menu, in sidebar style */
+				ul.rightbar { /* navigation sidebar */
 					background: #FFFFFF;
 					border: 1px solid #808080;
 					border-radius: 5px;
@@ -96,24 +94,24 @@
 					top: 55px; /* 5px below bodybar */
 				}
 				@media all and (max-width: 800px) {
-					ul.rightbar.closed { /* main menu, in drop-down style */
+					ul.rightbar.closed {
 						display: none; /* normally visible */
 					}
 				}
-				ul.rightbar > li { /* main menu item, in sidebar style */
+				ul.rightbar > li { /* navigation sidebar item */
 					display: block;
 					list-style: none;
 					text-align: left;
 				}
-				ul.rightbar > li > a { /* main menu item content, in sidebar style */
-					cursor: pointer;
-					display: block; /* enable all-round padding control */
+				ul.rightbar > li > a { /* navigation sidebar item content */
+					cursor: pointer; /* redundant? */
+					display: block; /* enable top & bottom padding */
 					font-size: 100%;
 					margin: 0 0 0 0;
 					padding: 3px 10px 3px 10px;
-					text-decoration: none;
+					text-decoration: none; /* suppress default */
 				}
-				ul.rightbar > li.level2 > a { /* main menu item content, in sidebar style */
+				ul.rightbar > li.level2 > a { /* indented navigation sidebar item content */
 					font-size: 85%;
 					padding-left: 25px;
 				}
@@ -124,24 +122,9 @@
 					background-color: #F0F0F0;
 					text-decoration: underline;
 				}
-				.mainbarX {
-					z-index: 1; /* beneath earlier bodybar */
-				}
-				.mainbar {
-					background-color: #FFFFFF;
-					margin: 0 auto 0 auto; /* horiz centred */
-					padding: 0 205px 0 5px;
-					max-widthQ: 990px; /* 1000-(5+5) */
-				}
-				.midbar {
-					margin-left: -200px;
-					padding-left: 200px;
-					width: 100%;
-				}
 				.tailbar {
 					background-color: #F0F0F0;
 					margin: 0 auto 0 auto;
-					max-widthQ: 980px; /* 1000-(10+10) */
 					padding: 3px 10px 5px 10px;
 				}
 				@media all and (max-width: 800px) {
@@ -213,7 +196,7 @@
 			</style>
 			<script type="text/javascript">
 				document.addEventListener('DOMContentLoaded', function(event) {
-					document.querySelector('.bodybar > div.icon').addEventListener('click', function(event) {
+					document.querySelector('.headbar > div.icon').addEventListener('click', function(event) {
 						document.querySelector('ul.rightbar').classList.toggle('closed');
 						event.stopPropagation();
 						event.preventDefault();
@@ -221,13 +204,18 @@
 					document.querySelector('body').addEventListener('click', function(event) {
 						document.querySelector('ul.rightbar').classList.add('closed');
 					});
-					document.querySelector('.bodybarX,.mainbarX').addEventListener('click', function() {});
+					document.querySelector('.mainbarX,.headbarX').addEventListener('click', function() {});
 				});
 			</script>
 		</head>
 		<body>
-			<div class="bodybarX">
-				<div class="bodybar">
+			<div class="mainbarX">
+				<div class="mainbar">
+					{{ content }}
+				</div>
+			</div>
+			<div class="headbarX"> <!-- above mainbar z-wise -->
+				<div class="headbar">
 					<span>JPL 7.4.1</span>
 					<div class="icon">
 						<div class="bar"></div>
@@ -235,11 +223,6 @@
 						<div class="bar"></div>
 						<div class="legend">menu</div>
 					</div>
-				</div>
-			</div>
-			<div class="mainbarX">
-				<div class="mainbar">
-					{{ content }}
 				</div>
 			</div>
 			<ul class="closed rightbar">
