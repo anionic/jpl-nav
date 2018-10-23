@@ -84,14 +84,14 @@
 				}
 				.navbar2 { /* navigation sidebar */
 					background: #FFFFFF;
-					border: 1px solid #808080;
-					border-radius: 5px;
+					borderQ: 1px solid #808080;
+					border-radiusQ: 5px;
 					display: block;
 					float: right; /* to RH edge of central zone */
 					list-style: none;
 					margin: 0 0 0 0;
 					padding: 0 0 0 0;
-					width: 200px;
+					width: 190px;
 				}
 				@media all and (max-width: 800px) {
 					.navbar2.closed {
@@ -131,6 +131,7 @@
 				.mainbar2 { /* avoids nav */
 					background-color: #FFFFFF;
 					margin-right: 200px;
+					padding: 0 5px 0 5px;
 				}
 				@media all and (max-width: 800px) {
 					.mainbar2 {
@@ -138,10 +139,13 @@
 					}
 				}
 				.tailbar0 {
+					bottom: 0;
+					position: fixed;
 				}
 				.tailbar1 {
 					background-color: #F0F0F0;
 					margin: 0 auto 0 auto;
+					max-width: 1000px;
 					padding: 3px 10px 5px 10px;
 				}
 				@media all and (max-width: 800px) {
