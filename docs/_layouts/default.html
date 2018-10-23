@@ -127,24 +127,25 @@
 				.mainbar1 { /* centred */
 					margin: 0 auto 0 auto; /* horiz centred */
 					max-width: 1000px;
-					paddingQ: 0 205px 0 5px; /* avoid nav */
 				}
 				.mainbar2 { /* avoids nav */
 					background-color: #FFFFFF;
 					margin-right: 200px;
 				}
 				@media all and (max-width: 800px) {
-					.mainbar {
+					.mainbar2 {
 						margin-right: 0; /* don't leave space for nav */
 					}
 				}
-				.tailbar {
+				.tailbar0 {
+				}
+				.tailbar1 {
 					background-color: #F0F0F0;
 					margin: 0 auto 0 auto;
 					padding: 3px 10px 5px 10px;
 				}
 				@media all and (max-width: 800px) {
-					.tailbar {
+					.tailbar1 {
 						display: none;
 					}
 				}
@@ -212,7 +213,7 @@
 			</style>
 			<script type="text/javascript">
 				document.addEventListener('DOMContentLoaded', function(event) {
-					document.querySelector('.headbar > div.icon').addEventListener('click', function(event) {
+					document.querySelector('.headbar1 > .icon').addEventListener('click', function(event) {
 						document.querySelector('.navbar2').classList.toggle('closed');
 						event.stopPropagation();
 						event.preventDefault();
