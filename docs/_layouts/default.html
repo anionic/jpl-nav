@@ -19,21 +19,11 @@
 				button { /* button seems not to inherit font-family from body, at least in Firefox */
 					font-family: Arial,Helvetica,sans-serif;
 				}
-				.mainbar {
-					background-color: #FFFFFF;
-					margin: 0 auto 0 auto; /* horiz centred */
-					padding: 0 205px 0 5px;
-				}
-				@media all and (max-width: 800px) {
-					.mainbar {
-						padding-right: 5px; /* don't leave space for rightbar */
-					}
-				}
 				.headbarX { /* full width of viewport */
-					position: fixed; /* doesn't scroll with content */
-					top: 0; /* at very top of viewport */
 					left: 0; /* full width from here... */
+					position: fixed; /* doesn't scroll with content */
 					right: 0; /* ...to here */
+					top: 0; /* at very top of viewport */
 				}
 				.headbar { /* perhaps limited width */
 					background-color: #E0E0FF;
@@ -41,8 +31,8 @@
 					margin: 0 auto 0 auto; /* horiz centred */
 				}
 				.headbar > span { /* banner text */
-					font-size: 250%;
 					color: #000080;
+					font-size: 250%;
 					margin-left: 10px;
 				}
 				.headbar > div.icon { /* menu burger icon */
@@ -81,7 +71,7 @@
 				.headbar > div.icon:hover > div.legend {
 					color: #FF0000;
 				}
-				ul.rightbar { /* navigation sidebar */
+				ul.navbar { /* navigation sidebar */
 					background: #FFFFFF;
 					border: 1px solid #808080;
 					border-radius: 5px;
@@ -94,16 +84,28 @@
 					top: 55px; /* 5px below bodybar */
 				}
 				@media all and (max-width: 800px) {
-					ul.rightbar.closed {
+					ul.navbar.closed {
 						display: none; /* normally visible */
 					}
 				}
-				ul.rightbar > li { /* navigation sidebar item */
+				.navbar {
+					left: 0;
+					margin: 0 auto 0 auto; /* centred */
+					max-width: 1000px;
+					position: fixed; /* does not scroll with content */
+					right: 0;
+					top: 50px; /* immediately below headbar */
+				}
+				.navbar > ul { /* navigation sidebar */
+					float: right; /* to RH edge of central zone */
+					width: 200px;
+				}
+				.navbar > ul > li { /* navigation sidebar item */
 					display: block;
 					list-style: none;
 					text-align: left;
 				}
-				ul.rightbar > li > a { /* navigation sidebar item content */
+				ul.navbar > li > a { /* navigation sidebar item content */
 					cursor: pointer; /* redundant? */
 					display: block; /* enable top & bottom padding */
 					font-size: 100%;
@@ -111,16 +113,26 @@
 					padding: 3px 10px 3px 10px;
 					text-decoration: none; /* suppress default */
 				}
-				ul.rightbar > li.level2 > a { /* indented navigation sidebar item content */
+				ul.navbar > li.level2 > a { /* indented navigation sidebar item content */
 					font-size: 85%;
 					padding-left: 25px;
 				}
-				ul.rightbar > li > a:focus {
+				ul.navbar > li > a:focus {
 					outline: 1px solid #FFC0C0; /* thinner focus outline looks better against (nearly) black background */
 				}
-				ul.rightbar > li > a:hover {
+				ul.navbar > li > a:hover {
 					background-color: #F0F0F0;
 					text-decoration: underline;
+				}
+				.mainbar {
+					background-color: #FFFFFF;
+					margin: 0 auto 0 auto; /* horiz centred */
+					padding: 0 205px 0 5px;
+				}
+				@media all and (max-width: 800px) {
+					.mainbar {
+						padding-right: 5px; /* don't leave space for rightbar */
+					}
 				}
 				.tailbar {
 					background-color: #F0F0F0;
@@ -197,23 +209,18 @@
 			<script type="text/javascript">
 				document.addEventListener('DOMContentLoaded', function(event) {
 					document.querySelector('.headbar > div.icon').addEventListener('click', function(event) {
-						document.querySelector('ul.rightbar').classList.toggle('closed');
+						document.querySelector('.navbar > ul').classList.toggle('closed');
 						event.stopPropagation();
 						event.preventDefault();
 					});
 					document.querySelector('body').addEventListener('click', function(event) {
-						document.querySelector('ul.rightbar').classList.add('closed');
+						document.querySelector('.navbar > ul').classList.add('closed');
 					});
-					document.querySelector('.mainbarX,.headbarX').addEventListener('click', function() {});
+					document.querySelector('.headbarX,.mainbarX').addEventListener('click', function() {});
 				});
 			</script>
 		</head>
 		<body>
-			<div class="mainbarX">
-				<div class="mainbar">
-					{{ content }}
-				</div>
-			</div>
 			<div class="headbarX">
 				<div class="headbar">
 					<span>JPL 7.4.1</span>
@@ -225,21 +232,28 @@
 					</div>
 				</div>
 			</div>
-			<ul class="closed rightbar">
-				<li class="level1"><a href="PrologApiOverview">Prolog API</a></li>
-				<li class="level2"><a href="PrologApiOverview">overview</a></li>
-				<li class="level2"><a href="PrologApiReference">reference</a></li>
-				<li class="level1"><a href="1">Java API</a></li>
-				<li class="level2"><a href="2">overview</a></li>
-				<li class="level2"><a href="7">JavaDoc</a></li>
-				<li class="level1"><a href="1">Release notes</a></li>
-				<li class="level2"><a href="ReleaseNotes740">7.4.0</a></li>
-				<li class="level2"><a href="3">7.0.1</a></li>
-				<li class="level2"><a href="3">3.0.3</a></li>
-				<li class="level2"><a href="3">3.0.2</a></li>
-				<li class="level2"><a href="3">3.0.0</a></li>
-				<li class="level2"><a href="ReleaseNotes202">2.0.2</a></li>
-			</ul>
+			<div class="mainbarX">
+				<div class="mainbar">
+					{{ content }}
+				</div>
+			</div>
+			<div class="navbar">
+				<ul class="closed">
+					<li class="level1"><a href="PrologApiOverview">Prolog API</a></li>
+					<li class="level2"><a href="PrologApiOverview">overview</a></li>
+					<li class="level2"><a href="PrologApiReference">reference</a></li>
+					<li class="level1"><a href="1">Java API</a></li>
+					<li class="level2"><a href="2">overview</a></li>
+					<li class="level2"><a href="7">JavaDoc</a></li>
+					<li class="level1"><a href="1">Release notes</a></li>
+					<li class="level2"><a href="ReleaseNotes740">7.4.0</a></li>
+					<li class="level2"><a href="3">7.0.1</a></li>
+					<li class="level2"><a href="3">3.0.3</a></li>
+					<li class="level2"><a href="3">3.0.2</a></li>
+					<li class="level2"><a href="3">3.0.0</a></li>
+					<li class="level2"><a href="ReleaseNotes202">2.0.2</a></li>
+				</ul>
+			</div>
 			<div class="tailbarX">
 				<div class="tailbar">
 					page.path={{page.path}}
