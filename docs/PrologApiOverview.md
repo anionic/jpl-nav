@@ -1,6 +1,4 @@
-JPL - Prolog API - overview
-===========================================
-
+# / Prolog API / overview
 
   * [Introduction](#introduction)
   * [JPL types (Java types, as seen by Prolog)](#jpl-types-java-types-as-seen-by-prolog)
