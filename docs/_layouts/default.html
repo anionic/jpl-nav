@@ -13,7 +13,10 @@
 					color: #000000;
 					height: 100%; /* good practice; I forget why ;-) */
 					margin: 0 0 0 0; /* override browser defaults */
-					padding: 50px 0 0 0; /* override browser defaults, leaving room for bodybar */
+					padding-top: 50px; /* avoid headbar */
+					padding-right: 0; /* override browser default */
+					padding-bottom: 20px; /* avoid tailbar */
+					padding-left: 0; /* override browser default */
 					width: 100%;
 				}
 				body,
@@ -147,6 +150,7 @@
 				}
 				.tailbar1 {
 					background-color: #E0E0FF;
+					height: 12px; /* 20px gross */
 					margin: 0 auto 0 auto;
 					max-width: 1000px;
 					padding: 3px 5px 5px 5px;
@@ -237,17 +241,6 @@
 			</script>
 		</head>
 		<body>
-			<div class="headbar0">
-				<div class="headbar1">
-					<span>JPL {{ page.title }}</span>
-					<div class="icon">
-						<div class="bar"></div>
-						<div class="bar"></div>
-						<div class="bar"></div>
-						<div class="legend">menu</div>
-					</div>
-				</div>
-			</div>
 			<div class="navbar0">
 				<div class="navbar1">
 					<ul class="navbar2 closed">
@@ -284,6 +277,17 @@
 				<div class="mainbar1">
 					<div class="mainbar2">
 						{{ content }}
+					</div>
+				</div>
+			</div>
+			<div class="headbar0">
+				<div class="headbar1">
+					<span>JPL {{ page.title }}</span>
+					<div class="icon">
+						<div class="bar"></div>
+						<div class="bar"></div>
+						<div class="bar"></div>
+						<div class="legend">menu</div>
 					</div>
 				</div>
 			</div>
