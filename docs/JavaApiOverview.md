@@ -1,5 +1,4 @@
-Java API - overview
-===================
+# / Java API / overview
 
  * [The Class Hierarchy](#the-class-hierarchy)
  * [Initializing and Terminating Prolog](#initializing-and-terminating-prolog)
@@ -23,9 +22,6 @@ Java API - overview
     * [arg indexing](#arg-indexing)
     * [representing @(null)](#representing-null)
     * [all solutions of a Query with no solutions](#all-solutions-of-a-query-with-no-solutions)
-
-
-
 
 ### The Class Hierarchy
 
@@ -53,7 +49,6 @@ org.jpl7
 Each instance of `org.jpl7.Query` contains a `Term` (denoting the goal which is to be proven), and much more besides.
 
 Each instance of `org.jpl7.Compound` has a java.lang.String name and an array of `Term` arguments. For compatibility with SWI-Prolog version 7's extension [Compound terms with zero arguments](http://www.swi-prolog.org/pldoc/man?section=ext-compound-zero), the argument array can be of zero length.
-
 
 ### Initializing and Terminating Prolog
 
@@ -213,18 +208,18 @@ To obtain the *ith* argument of a compound (numbered from 0), use the **arg0()**
 public Term arg0(int i);
 ```
 
-### Creating Queries - Queries
+### Creating Queries
 
-A **Query** contains a **Term**, representing a Prolog goal:
+A `Query` contains a `Term`, representing a Prolog goal:
 
 ```java
 Term goal = new Compound("teacher_of", new Term[] {new Atom("aristotle"), new Atom("alexander")});
 Query q = new Query(goal);
 ```
 
-The **Query** **q** in this example represents the Prolog query
+The `Query q` in this example represents the Prolog query
 
-```java
+```prolog
 ?- teacher_of(aristotle, alexander).
 ```
 
@@ -232,7 +227,10 @@ The **Query** **q** in this example represents the Prolog query
 
 ### Querying Prolog
 
-To ask the Prolog engine a query, one first constructs a **Query** instance, as in the above example, and then uses the **java.util.Iterator** interface, which the **Query** class implements, to obtain solutions (where a "solution" is what is known in logic programming jargon as a *substitution*, which is a collection of *bindings*, each of which relates one of the **Variables** within the **Query**'s goal to a **Term** representation of the Prolog term to which the corresponding Prolog variable was bound by the proof).
+To ask the Prolog engine a query, one first constructs a `Query` instance, as in the above example,
+and then uses the `java.util.Iterator` interface, which the `Query` class implements,
+to obtain solutions (where a "solution" is what is known in logic programming jargon as a *substitution*,
+which is a collection of *bindings*, each of which relates one of the variables within the query's goal to a `Term` representation of the Prolog term to which the corresponding Prolog variable was bound by the proof).
 
 ```java
 public interface Iterator {
@@ -249,10 +247,13 @@ q.hasNext()
 
 returns `true` if the Prolog query *teaches(aristotle, alexander)* is provable, and `false` otherwise. In this example, the Prolog query is a ground term, so the "solution" to the query is merely a truth value, and is given by the `hasNext()` method.
 
-Where a query contains variables, on the other hand, its execution yields a sequence of bindings of the variables' names to **Term**s. JPL uses a `java.util.Map<String, Term>` (implemented as a
-`java.util.HashMap`) to represent these bindings; the objects in the map are `org.jpl7.Term` instances, keyed (uniquely) by the `String` names of their associated variables.
+Where a query contains variables, on the other hand, its execution yields a sequence of bindings
+of the variables' names to `Term` instances.
+JPL uses a `java.util.Map<String, Term>` (implemented as a `java.util.HashMap`) to represent these bindings;
+the objects in the map are `org.jpl7.Term` instances, keyed (uniquely) by the `String` names of their associated variables.
 
-For example, to print all of Aristotle's pupils, i.e., all the bindings of **X** which satisfy *teaches(aristotle,X)*, one could write
+For example, to print all of Aristotle's pupils, i.e. all the bindings of `X` which satisfy `teaches(aristotle,X)`,
+one could write
 
 ```java
 Query q = new Query("teaches", new Term[] {new Atom("aristotle"), new Variable("X")});
