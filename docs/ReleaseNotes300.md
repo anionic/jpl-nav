@@ -1,7 +1,8 @@
-# JPL - Release notes - 3.0.0
+# / Release notes / 3.0.0
 
 This release is a work-in-progress, and is being made available only to a few enthusiasts who don't mind the likelihood that the API will change before 3.x becomes stable.
-Java API: new Variable semantics
+
+## Java API: new Variable semantics
 
 * A Variable must be created with a name, e.g.
 ```prolog
@@ -24,7 +25,8 @@ solution.get("X")
 * Each Variable instance within a Java application is just a lexical token in the alternative Prolog concrete syntax which Term and its subclasses comprise.  Two instances of Variable("X") are no different from one shared instance: you are free to reuse such lexical elements, but this has nothing to do with the sharing of variables which can occur within a Prolog engine.
 
 * The bindings of anonymous and dont-tell-me variables (i.e. those whose names begin with an underscore character) are not returned to Java: use them to avoid the computational time and space costs of constructing Term representations of bindings in which you are not interested.
-# Java API: easier Term and Query construction
+
+## Java API: easier Term and Query construction
 
 Now that Variables are named, and bindings are keyed by the names of variables, it is easier to construct Term (and hence Query) instances.
      
@@ -46,7 +48,7 @@ q.oneSolution().get("N")
 ```
 returns a jpl.Integer representing the Prolog integer value to which N was bound by the successful call of the query.
 
-# Java API: deprecated methods
+## Java API: deprecated methods
 ```prolog
 Query.query()
 ```
@@ -56,14 +58,14 @@ Query.rewind()
 ```
 use Query.close() instead
 
-# Java API: fixes
+## Java API: fixes
 
 array methods inherited from java.lang.Object are now callable, e.g.
 ```prolog
 jpl_new(array(int), [4,5,6], A),
 jpl_call(A, hashCode, [], H).
 ```
-# Java API: planned or under consideration
+## Java API: planned or under consideration
 
 drop Term.display(), which cutely displays any Term in a Swing tree view in a new window.
 
