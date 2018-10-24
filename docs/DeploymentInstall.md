@@ -1,13 +1,12 @@
-# INSTALLING & COMPILING  JPL 
+# Installing & compiling JPL 
 
-Updated: October 12, 2018 9
-
+Updated: October 12, 2018
 
 * Information on how to [use JPL in Windows and Linux](https://github.com/ssardina-research/packages-jpl/wiki/JPL-Under-Linux-and-Windows)
 * Information how to [set-up JPL in MacOS](https://github.com/ssardina-research/packages-jpl/wiki/JPL-under-Mac-OS)
 
 
-# General 
+## General 
 
 To use JPL, three libraries need to be placed where each can be found:
 
@@ -20,9 +19,9 @@ To use JPL, three libraries need to be placed where each can be found:
     * Would generally be in `%SWI_HOME_DIR%\library`
      
 
-# MacOS
+## MacOS
 
-# Using Oracle's SDK
+## Using Oracle's SDK
 
 Download from
 
@@ -38,7 +37,7 @@ Set $JAVAPREFIX to
 
  .dylib
  
- # Windows
+ ## Windows
  
 If the example programs don't run successfully, look carefully at any error messages; they typically indicate where the problem lies.  Then check the installation instruction s and prerequisites carefully. 
   
