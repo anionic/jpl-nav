@@ -1,8 +1,8 @@
-## One-shot vs Iterative Queries
+# / One-shot vs iterative queries
 
 The high-level Java API to interact with SWI Prolog can be divided into two classes.
 
-## One-shot Queries
+## One-shot queries
 
 For the majority of applications the following **one-shot** Queries mechanisms will be sufficient:
 
@@ -13,7 +13,7 @@ For the majority of applications the following **one-shot** Queries mechanisms w
 
 These methods will basically attach to a Prolog engine, run the goal, collect the solutions and build the bindings as Java `Term` objects, and close, thus releasing the Prolog engine (for other queries to use).
 
-## Iterative Queries
+## Iterative queries
 
 The second type of queries one can issue via JPL is the **iterative** type of query. This is useful when there are potentially infinite or too many number of solutions available, but one needs to process up to some solution and how many is unknown at the outset (otherwise one could use `nSolutions(n)`. For example, take a query of the sort "find an open shop in the city whose distance is not more than 10km", for which Prolog has all the information about shops, their locations and open hours, but Java has the information on distance between locations (e.g., via Google Maps API). Since there could be too many shops to consider and part of the task needs to be computed in Java, an iterative query would be the solution:
 
