@@ -137,10 +137,11 @@ In this respect, migrating JPL 3.x applications to JPL7 should require only shal
 ## Iterating aggregated solutions
 
 **summary:** *no change here*
+
 JPL's `Query.allSolutions()` and `.nSolutions()` are analogous to SWI Prolog's `findall/3` and `findnsolns/3`.
 
-Note that what JPL calls a "solution" is strictly a "substitution", i.e. a map from variables to bindings.
-Nevertheless, JPL7 and its documentation will continue to use "solution" everywhere.
+Note that what JPL calls a *solution* is strictly a *substitution*, i.e. a map from variables to bindings.
+Nevertheless, JPL7 and its documentation will continue to use *solution* everywhere.
 
 In JPL7, these `Query` methods (still) return an array of solutions;
 in current Java best practice they should arguably use `java.util.List` from the Collections Framework,
@@ -160,11 +161,8 @@ for (Map soln : Query.allSolutions("current_module(X)")) {
 In JPL 3.x, `Atom` extended `Compound`; it was a specialised compound with no args.
 ```
 Term
- |
  +-- Compound
- |    |
  |    +-- Atom
- |
 ```
 in JPL7, `Atom` and `Compound` are sibling subclasses of `Term`,
 because SWI Prolog V7 compounds may have zero args yet be distinct from similarly named atoms,
@@ -172,9 +170,7 @@ and JPL7 `Atom` instances have extra structure and functionality;
 there is no longer any inheritance worth representing.
 ```
 Term
- |
  +-- Compound
- |
  +-- Atom
  |
 ```
@@ -257,7 +253,7 @@ dict.get(Term key)
 ```
 Note that: dict keys must currently be either (textual) atoms or (small) integers; the map is necessarily from `Term` to `Term`; JPL7 must check (at run-time) that all keys are legitimate.
 
-This is Not Yet Implemented, and constructive discussion is welcomed.
+This is *not yet implemented*, and constructive discussion is welcomed.
 
 ## Replaced in JPL7
 
