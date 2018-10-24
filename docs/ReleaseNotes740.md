@@ -51,7 +51,7 @@ S = 'Thu Jan 19 19:56:13 GMT 2017'.
 
 **summary:** *all Term subclasses support all methods, reducing need for coercions*
 
-For coding convenience, the major methods of ``Term`'s concrete subclasses
+For coding convenience, the major methods of `Term`'s concrete subclasses
 (`Atom`, `Compound`, `Integer`, `Float`, `Variable` and `JRef`) are supported in JPL7 by all these classes;
 this reduces the need for coercions.
 
@@ -91,6 +91,6 @@ typeName() | "Atom" | "Compound" | "Float" | "Integer" | "Variable" | "JRef"
 
 The behaviours of `arg(int)` and `args()` are based on the behaviours of the corresponding SWI Prolog 7.x `arg/3` and `=../2` built-ins respectively.
 
-The behaviours of the various isXXX() methods are based on SWI Prolog 7.x `==/2`.
+The behaviours of the various `isXXX()` methods are based on SWI Prolog 7.x `==/2`.
 
 The behaviours of the various `hasFunctor(xxx,int)` methods are based on SWI Prolog 7.x `functor/3`.
