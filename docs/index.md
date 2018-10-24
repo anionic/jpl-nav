@@ -1,4 +1,4 @@
-# JPL - Java <-> SWI Prolog Interface
+## Introduction
 
 JPL is a set of Java classes and C functions providing a bidirectional interface between Java and Prolog.  JPL uses the Java Native Interface (JNI) to connect to a Prolog engine through the Prolog Foreign Language Interface (FLI).  JPL is not a pure Java implementation of Prolog; it makes extensive use of native implementations of Prolog on supported platforms.  The current version of JPL only works with SWI-Prolog.
 
@@ -8,7 +8,7 @@ JPL is designed in two layers, a low-level interface to the Prolog FLI and a hig
 
 JPL has been integrated into the full SWI-Prolog distribution starting with version 5.4.x, including binaries for MS-Windows and a Linux RPM. Check an overview of its many versions [here](VERSIONS).
 
-### OBJECTIVES
+## Objectives
 
 The objectives of JPL are to:
 
@@ -24,7 +24,7 @@ The objectives of JPL are to:
 
 
 
-## TABLE OF CONTENTS
+## Table of contents
 
 1. Setup and Install
     * [Installing JPL in Linux and Windows](JPL-Under-Linux-and-Windows).
@@ -49,7 +49,7 @@ The objectives of JPL are to:
 
 
 
-## RELEVANT LINKS
+## Other resources
 
 * The main Github repository for JPL 7 (which this one is a fork of): <https://github.com/SWI-Prolog/packages-jpl> 
 * Documentation:
@@ -61,6 +61,6 @@ The objectives of JPL are to:
 
 
 
-# LICENSE
+## License
 
 JPL is released under the terms of the Simplified BSD License. See [LICENSE](https://github.com/ssardina-research/packages-jpl/blob/master/LICENSE) file.
