@@ -60,37 +60,37 @@ method | Atom | Compound | Float | Integer | Variable | JRef
 arg(int) | JPLException | Term | JPLException | JPLException | JPLException | JPLException
 args() | Term[] {} | Term[] {...} | Term[] {} | Term[] {} | JPLException | Term[] {}
 arity() | 0 | 0+ | 0 | 0 | JPLException | 0
-atomType()	"text" etc.	JPLException	JPLException	JPLException	JPLException	"jref"
-bigValue()	JPLException	JPLException	JPLException	BigInteger or null	JPLException	JPLException
-doubleValue()	JPLException	JPLException	double	double	JPLException	JPLException
-equals()	boolean	boolean	boolean	boolean	xxbooleanxx	boolean
-floatValue()	JPLException	JPLException	float	float	JPLException	JPLException
-hasFunctor(double, int)	false	false	boolean	false	JPLException	false
-hasFunctor(String, int)	boolean	boolean	false	false	JPLException	false
-hasFunctor(long, int)	boolean	boolean	false	false	JPLException	false
-isAtom()	true	false	false	false	false	false
-isBig()	JPLException	JPLException	JPLException	boolean	JPLException	JPLException
-isBigInteger()	false	false	false	boolean	false	false
-isCompound()	false	true	false	false	false	false
-isFloat()	false	false	true	false	false	false
-isInteger()	false	false	false	true	false	false
-isJFalse()	false	boolean	false	false	false	false
-isJNull()	false	boolean	false	false	false	false
-isJRef()	false	false	false	false	false	true
-isJTrue()	false	boolean	false	false	false	false
-isJVoid()	false	boolean	false	false	false	false
-isListNil()	boolean	false	false	false	false	false
-isListPair()	false	boolean	false	false	false	false
-isVariable()	false	false	false	false	true	false
-longValue()	JPLException	JPLException	long	long	JPLException	JPLException
-name()	String	String	JPLException	JPLException	String	JPLException
-object()	JPLException	JPLException	JPLException	JPLException	JPLException	Object
-toString()	String	String	String	String	String	String
-type()	2	6	4	3	1	102
-typeName()	"Atom"	"Compound"	"Float"	"Integer"	"Variable"	"JRef"
+atomType() | "text" etc. | JPLException | JPLException | JPLException | JPLException | "jref"
+bigValue() | JPLException | JPLException | JPLException | BigInteger or null | JPLException | JPLException
+doubleValue() | JPLException | JPLException | double | double | JPLException | JPLException
+equals() | boolean | boolean | boolean | boolean | xxbooleanxx | boolean
+floatValue() | JPLException | JPLException | float | float | JPLException | JPLException
+hasFunctor(double, int) | false | false | boolean | false | JPLException | false
+hasFunctor(String, int) | boolean | boolean | false | false | JPLException | false
+hasFunctor(long, int) | boolean | boolean | false | false | JPLException | false
+isAtom() | true | false | false | false | false | false
+isBig() | JPLException | JPLException | JPLException | boolean | JPLException | JPLException
+isBigInteger() | false | false | false | boolean | false | false
+isCompound() | false | true | false | false | false | false
+isFloat() | false | false | true | false | false | false
+isInteger() | false | false | false | true | false | false
+isJFalse() | false | boolean | false | false | false | false
+isJNull() | false | boolean | false | false | false | false
+isJRef() | false | false | false | false | false | true
+isJTrue() | false | boolean | false | false | false | false
+isJVoid() | false | boolean | false | false | false | false
+isListNil() | boolean | false | false | false | false | false
+isListPair() | false | boolean | false | false | false | false
+isVariable() | false | false | false | false | true | false
+longValue() | JPLException | JPLException | long | long | JPLException | JPLException
+name() | String | String | JPLException | JPLException | String | JPLException
+object() | JPLException | JPLException | JPLException | JPLException | JPLException | Object
+toString() | String | String | String | String | String | String
+type() | 2 | 6 | 4 | 3 | 1 | 102
+typeName() | "Atom" | "Compound" | "Float" | "Integer" | "Variable" | "JRef"
 
-The behaviours of arg(int) and args() are based on the behaviours of the corresponding SWI Prolog 7.x arg/3 and =../2 built-ins respectively.
+The behaviours of `arg(int)` and `args()` are based on the behaviours of the corresponding SWI Prolog 7.x `arg/3` and `=../2` built-ins respectively.
 
-The behaviours of the various isXXX() methods are based on SWI Prolog 7.x ==/2.
+The behaviours of the various isXXX() methods are based on SWI Prolog 7.x `==/2`.
 
-The behaviours of the various hasFunctor(xxx,int) methods are based on SWI Prolog 7.x functor/3.
+The behaviours of the various `hasFunctor(xxx,int)` methods are based on SWI Prolog 7.x `functor/3`.
