@@ -1,4 +1,4 @@
-# Making JPL work under Mac OS
+# / Making JPL work under Mac OS
 
 (notes from student The Champion in the context of my AOPD course in 2018)
 
