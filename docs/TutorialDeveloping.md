@@ -1,6 +1,8 @@
+# / Tutorials / Developing JPL
+
 Say you want to develop JPL further, to extend it or address some bug.
 
-## JPL Architecture/Components
+## JPL architecture & components
 
 The first thing to understand is that JPL has three parts:
 
@@ -13,7 +15,7 @@ The first thing to understand is that JPL has three parts:
 Both the Java and Prolog sources will make use of the C JNI code.
 
 
-## Setting up JPL fo development
+## Setting up JPL for development
 
 The second thing to understand is that JPL is just a package on the overall SWI Prolog system. So, to compile the whole JPL, one needs to core SWI system as the JPL C component (`libswipl.so`) links against the core SWI library (e.g., `libswipl.so`).
 
@@ -86,7 +88,7 @@ Now you have a local branch `proposal` tracking a remote branch in `ssardina` fo
 **NOTE:** If you are only expecting to change the Java API, then you can just work with the `packages-jpl` distribution in isolation. This will compile just the Java classes and produce a corresponding JAR file for use. However, in this case you would have to have an SWI system installed system-wide and make sure your application uses your updated JPL JAR file and not the system installed one.
 
 
-## Unit Testing Output
+## Unit testing output
 
 This is how it looks when the tests are run error-free:
 
