@@ -18,8 +18,7 @@
   * [To do](#to-do)
 
 
-Introduction
---------------------------------------------------------------------------------------------
+## Introduction
 
 JPL's Prolog API is an interface which allows SWI Prolog 7.x programs to
 dynamically create and manipulate Java objects.
@@ -27,27 +26,26 @@ dynamically create and manipulate Java objects.
 Here are some significant features of the interface and its
 implementation:
 
--   it is completely dynamic: no precompilation is required to manipulate public Java classes which can be found at run time, and methods or fields of objects which can be instantiated from them 
--   it is interoperable with the JPL 7.4 Java API (which evolved from Fred Dushin's JPL 1.0.1)
--   it requires SWI Prolog 7.4+ and a recent Java SE Runtime Environment 
--   it exploits the *Invocation API* of the [Java Native Interface](https://docs.oracle.com/javase/8/docs/technotes/guides/jni/) (both are mandatory features of any compliant JVM) 
--   it is implemented as a single SWI Prolog library module (`jpl.pl`), a compiled ANSI C foreign library (`jpl.dll/.so/.dylib` for Windows/Linux/MacOS), and a Java class library (`jpl.jar`)
--   wherever feasible, Java data values and object references are represented within Prolog canonically and without loss of information (minor exceptions: Java *float* and *double* values are both converted to Prolog *float* values; Java *byte*, *char*, *short*, *int* and *long* values are all converted to Prolog *integer* values; the type distinctions which are lost are normally of no significance)
--   references within Prolog to Java objects:
-    -   are opaque handles (details follow)
-    -   are canonical - two references are equal by `==/2` if-and-only-if they refer to the same object within the JVM
-    -   cooperate with SWI Prolog's garbage collection: when an object reference is garbage-collected in Prolog, the JVM garbage collector is informed, so there is sound and complete overall garbage collection of Java objects within the combined Prolog+Java system
--   Java class methods can be called by name: JPL invisibly fetches (and caches) essential details of method invocation, exploiting *Java Reflection* facilities
--   the Prolog API is similar to that of XPCE: the four main interface calls are `jpl_new/3`, `jpl_call/4`, `jpl_set/3` and `jpl_get/3` (there is no `jpl_free`, since Java's garbage collection is extended transparently into Prolog)
--   `jpl_call/4` resolves overloaded methods automatically and dynamically, inferring the types of the call's actual parameters, and identifying the most specific of the applicable method implementations (similarly, *jpl\_new* resolves overloaded constructors)
--   Prolog code which uses the API calls is responsible for passing suitably-typed values and references, since the JNI doesn't perform complete dynamic type-checking, and nor currently does JPL (although the *overloaded method resolution* mechanism could probably be adapted to do this)
--   Prolog code can reason about the types of Java data values, object references, fields and methods: JPL supports a canonical representation of all Java types as structured terms (e.g. `array(array(byte))`) and also as JVM signatures (text atoms) in *descriptor* and *classname* syntax (details follow)
--   the Prolog and Java APIs of JPL are largely independent; the Prolog API concentrates on representing all Java data values and objects within Prolog, and supporting manipulation of classes and objects;the Java API concentrates on representing any Prolog term within Java, and supporting the calling of goals within Prolog and the retrieving of results back into Java 
--   when called from Prolog, *void* methods return an invented `@(void)` value (which is distinct from all other JPL values and references); this simplifies and regularises the API (all methods return a typed value)
--   JPL uses `@/1` to construct representations of certain Java values; if `@/1` is defined as a prefix operator (as used by XPCE), then you can write `@true`, `@false`, `@null` or `@void` in your source code; otherwise (and for portability, and recommended) you should write `@(true)`, `@(false)`, `@(null)` or `@(void)`.
+* it is completely dynamic: no precompilation is required to manipulate public Java classes which can be found at run time, and methods or fields of objects which can be instantiated from them 
+* it is interoperable with the JPL 7.4 Java API (which evolved from Fred Dushin's JPL 1.0.1)
+* it requires SWI Prolog 7.4+ and a recent Java SE Runtime Environment 
+* it exploits the *Invocation API* of the [Java Native Interface](https://docs.oracle.com/javase/8/docs/technotes/guides/jni/) (both are mandatory features of any compliant JVM) 
+* it is implemented as a single SWI Prolog library module (`jpl.pl`), a compiled ANSI C foreign library (`jpl.dll/.so/.dylib` for Windows/Linux/MacOS), and a Java class library (`jpl.jar`)
+* wherever feasible, Java data values and object references are represented within Prolog canonically and without loss of information (minor exceptions: Java *float* and *double* values are both converted to Prolog *float* values; Java *byte*, *char*, *short*, *int* and *long* values are all converted to Prolog *integer* values; the type distinctions which are lost are normally of no significance)
+* references within Prolog to Java objects:
+ * are opaque handles (details follow)
+ * are canonical - two references are equal by `==/2` if-and-only-if they refer to the same object within the JVM
+ * cooperate with SWI Prolog's garbage collection: when an object reference is garbage-collected in Prolog, the JVM garbage collector is informed, so there is sound and complete overall garbage collection of Java objects within the combined Prolog+Java system
+* Java class methods can be called by name: JPL invisibly fetches (and caches) essential details of method invocation, exploiting *Java Reflection* facilities
+* the Prolog API is similar to that of XPCE: the four main interface calls are `jpl_new/3`, `jpl_call/4`, `jpl_set/3` and `jpl_get/3` (there is no `jpl_free`, since Java's garbage collection is extended transparently into Prolog)
+* `jpl_call/4` resolves overloaded methods automatically and dynamically, inferring the types of the call's actual parameters, and identifying the most specific of the applicable method implementations (similarly, *jpl\_new* resolves overloaded constructors)
+* Prolog code which uses the API calls is responsible for passing suitably-typed values and references, since the JNI doesn't perform complete dynamic type-checking, and nor currently does JPL (although the *overloaded method resolution* mechanism could probably be adapted to do this)
+* Prolog code can reason about the types of Java data values, object references, fields and methods: JPL supports a canonical representation of all Java types as structured terms (e.g. `array(array(byte))`) and also as JVM signatures (text atoms) in *descriptor* and *classname* syntax (details follow)
+* the Prolog and Java APIs of JPL are largely independent; the Prolog API concentrates on representing all Java data values and objects within Prolog, and supporting manipulation of classes and objects;the Java API concentrates on representing any Prolog term within Java, and supporting the calling of goals within Prolog and the retrieving of results back into Java 
+* when called from Prolog, *void* methods return an invented `@(void)` value (which is distinct from all other JPL values and references); this simplifies and regularises the API (all methods return a typed value)
+* JPL uses `@/1` to construct representations of certain Java values; if `@/1` is defined as a prefix operator (as used by XPCE), then you can write `@true`, `@false`, `@null` or `@void` in your source code; otherwise (and for portability, and recommended) you should write `@(true)`, `@(false)`, `@(null)` or `@(void)`.
 
-JPL types (Java types, as seen by Prolog) 
-----------------------------------------
+## JPL types (Java types, as seen by Prolog) 
 
 All Java values and object references which are passed between Prolog
 engines and Java VMs via JPL's Prolog API are seen as instances of types
@@ -70,8 +68,7 @@ within this simplified JPL type system:
         -   -   is an ***array***
             -   or a ***class instance*** (other than of *java.lang.String*)
 
-Representation of Java values and references within Prolog
-----------------------------------------
+## Representation of Java values and references within Prolog
 
 Instances of JPL types are represented within Prolog as follows:
 
@@ -87,8 +84,7 @@ Instances of JPL types are represented within Prolog as follows:
 -   ***void*** has only one value, represented as `@(void)`
 -   ***array*** and ***class instance*** references are represented (since 7.4) as *[blob](http://www.swi-prolog.org/pldoc/man?predicate=blob/2)s* of type `jref`, portrayed e.g. `<jref>(0x12345678)` but (like stream handles) with no source syntax acceptable to `read/1`.
 
-Representation of Java types within Prolog (1): *structured* notation 
-----------------------------------------
+## Representation of Java types within Prolog (1): *structured* notation 
 
 The Prolog API allows Prolog applications to inspect, manipulate, and reason about the types of Java values, references, methods etc., and this section describes how these types themselves are represented.
 Predicates which pass these type representations include (the clue is in the name):
@@ -146,8 +142,7 @@ array(class([java,lang],['String'])
 
 This *structured* notation for Java types is a *term-encoding*, designed to be convenient for composition and decomposition by unification.
 
-Representation of Java types within Prolog (2): *descriptor* notation 
-----------------------------------------
+## Representation of Java types within Prolog (2): *descriptor* notation 
 
 The *descriptor* notation for Java types is one of two textual notations employed by the JVM and the Java class libraries; JPL (necessarily) supports both (and supports conversion between all three representations).
 
@@ -165,8 +160,7 @@ Examples of descriptor notation:
 -   `'Ljava/util/Date;'` denotes the Java class `java.util.Date`
 -   `'(argument_types)return_type'` denotes the type of a method
 
-Representation of Java types within Prolog (3): *classname* notation 
-----------------------------------------
+## Representation of Java types within Prolog (3): *classname* notation 
 
 The *classname* notation for Java types is the other textual notation employed by the JVM and the Java class libraries. It is a (seemingly unnecessary) variation on the *descriptor* notation, used by a few JNI
 routines. It has the slight advantage that, in the case of simple class types only, it resembles the Java source text notation for classes. This representation is supported only because certain JNI functions use it; it is used within JPL's implementation of `jpl_call/4` etc. You may encounter this notation when tracing JPL activity, but otherwise you need not know about it.
@@ -177,8 +171,7 @@ Examples of classname notation:
 -   `'[B'` denotes an ***array*** of ***boolean***
 -   `'[Ljava.lang.String;'` denotes an ***array*** of ***string***
 
-Creating instances of Java classes
-----------------------------------------
+## Creating instances of Java classes
 
 To create an instance of a Java class from within Prolog, call `jpl_new(+Class, +Params, -JRef)` with a classname, a list of actual parameters for the constructor, and a variable to be bound to the new reference, e.g.
 
@@ -190,8 +183,7 @@ which binds `JRef` to a new object reference, e.g.`<jref>(0x12345678)`.
 
 NB for convenience, this predicate is overloaded: `Class` can also be a class type in *structured* notation, e.g. `array(boolean)`.
 
-Calling methods of Java objects or classes
-----------------------------------------
+## Calling methods of Java objects or classes
 
 The object reference generated by the `jpl_new/3` call (above) can be passed to other JPL API predicates such as:
 
@@ -223,8 +215,7 @@ which documents the programmer's understanding that this is a *void* method, and
 
 If the `JRef` argument represents a class, then the named static method of that class is called.
 
-Fetching field values of Java objects or classes
-----------------------------------------
+## Fetching field values of Java objects or classes
 
 The `jpl_get/3` API predicate has the following interface:
 
@@ -247,8 +238,7 @@ jpl_get('java.awt.Color', pink, Pink)
 
 which binds the Prolog variable `Pink` to a reference to the predefined **java.awt.Color** "constant" which is held in the static final **.pink** field of the **java.awt.Color** class.
 
-Setting field values of Java objects or classes
-----------------------------------------
+## Setting field values of Java objects or classes
 
 Object and class fields can be set (i.e. have values or references assigned to them) by the `jpl_set/3` API procedure, which has the following interface:
 
@@ -258,8 +248,7 @@ jpl_set(+Class_or_Object, +Field, +Datum)
 
 where **Datum** must be a value or reference of a type suitable for assignment to the named field of the class or object.
 
-A slightly longer example
-----------------------------------------
+## A slightly longer example
 
 This code fragment
 
@@ -309,8 +298,7 @@ See [Prolog API - Reference](https://jpl7.org/PrologApiReference.jsp) for fuller
 
 Don't overlook the possibility and advantages of writing custom Java classes to serve your Prolog applications: this interface is not designed to make Java programming redundant.
 
-Exceptions thrown by Java
-----------------------------------------
+## Exceptions thrown by Java
 
 Uncaught exceptions thrown by the JVM while handling a Prolog API call are mapped onto `error(_,_)` structures, e.g.
 
@@ -327,8 +315,7 @@ Java exceptions are always returned as Prolog exceptions with this structure:
 error(java_exception(reference_to_exception_object), exception_classname)
 ```
 
-Gotchas
-----------------------------------------
+## Gotchas
 
 Here are a few things to watch out for.
 
@@ -360,8 +347,7 @@ which uses an anonymous variable to ignore the result.
 
 There is (deliberately) no `jpl_call/3` convenience predicate which conceals the return value of `void` methods (see above).
 
-To do
-----------------------------------------
+## To do
 
 Here are a few longer-term (and tricky) aims:
 
