@@ -1,4 +1,5 @@
-# JPL - Release notes - 2.0.2
+# / Release notes / 2.0.2
+
 ## Java API: canonical representation of terms
 
 ### rationale
@@ -12,21 +13,21 @@
  * Long (this doesn't have a clear role)
  
  the Term class hierarchy has been rearranged thus:
+'''
+Term (abstract)
+  |
+  +--- Compound
+  |      |
+  |      +--- Atom (special case)
+  |
+  +--- Integer
+  |
+  +--- Float
+  |
+  +--- Variable
 
-        Term (abstract)
-          |
-          +--- Compound
-          |      |
-          |      +--- Atom (special case)
-          |
-          +--- Integer
-          |
-          +--- Float
-          |
-          +--- Variable
-
-        Query
-
+Query
+'''
 Note that an Atom is a Compound whose arity is zero.  It is naughty to construct a Compound with zero arity (this violates canonicity), and JPL code never does this when exporting terms from Prolog.  Application code written in Java, using JPL, should avoid doing this.  Maybe we should raise an exception if it is attempted (maybe we do, I can't remember :-)
 
 Note also that, although a Query contains a Term (among other Prolog-related state), it is not related to it by inheritance.
