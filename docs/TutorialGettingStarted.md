@@ -1,3 +1,5 @@
+# / Tutorials / Getting started
+
 Assume we have a testing Prolog file with this content:
 
         child_of(joe, ralf). 
@@ -39,7 +41,7 @@ At this point, this process may seem a bit long-winded; however, you should soon
 
 
 
-## Querying the Database
+## Querying the database
 
 
 Using the same technique, we can query the Prolog database about inferences it can make.  To ask whether the Prolog query `child_of(joe,ralf)` is true, given the above Prolog database, for example, we write:
@@ -66,7 +68,7 @@ To take an example that requires a bit more work on the part of the Prolog engin
           ( q3.hasSolution() ? "provable" : "not provable" ) 
       );
       
-## Querying with Variables
+## Querying with variables
 
 Ground query (those without variables) like the above are relatively straightforward; they are essentially either provable or not, and there is typically no point in backtracking.  
 
