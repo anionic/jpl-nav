@@ -2,7 +2,7 @@
 
   * [Introduction](#introduction)
   * [JPL types (Java types, as seen by Prolog)](#jpl-types-java-types-as-seen-by-prolog)
-  * [epresentation of Java values and references within Prolog](#epresentation-of-java-values-and-references-within-prolog)
+  * [Representation of Java values and references within Prolog](#representation-of-java-values-and-references-within-prolog)
   * [Representation of Java types within Prolog (1): <em>structured</em> notation](#representation-of-java-types-within-prolog-1-structured-notation)
   * [Representation of Java types within Prolog (2): <em>descriptor</em> notation](#representation-of-java-types-within-prolog-2-descriptor-notation)
   * [Representation of Java types within Prolog (3): <em>classname</em> notation](#representation-of-java-types-within-prolog-3-classname-notation)
