@@ -1,3 +1,6 @@
+
+# / Tutorials / Queries & multi-threaded Java
+
 In the past, JPL relied on a _single_ underlying Prolog engine that could only have _one query open_ at a time. This presented difficulties for multi-threaded programs in which the programmer had no control over when Queries are executed. While JPL made as much of the High-Level Interface thread-safe as it can, the user still had to make use of synchronization in a limited set of circumstances (namely when queries remained open for extended periods) to ensure that all calls to the High-Level Interface are thread safe.
 
 Then, Jan Wielemaker implemented a much more powerful mechanism in which a **pool of underlying SWI Prolog engines** is set-up and maintained; queries can then attach, use and detach, and available engines re-used across different Queries.
@@ -9,7 +12,7 @@ At this point, the pool contains ten (10) engines max (constant `JPL_MAX_POOL_EN
 We discuss below a few subtle points on how the pool of engines and Queries operate that may be worth taking into account when using JPL in your application.
 
 
-## Query Opening & Termination
+## Query opening & termination
 
 First, a query is open and become active when the _first solution is required_. The creation itself of a `Query` object does not activate/open the query and hence no engine is needed or attached that point. 
 
@@ -47,7 +50,7 @@ Another alternative is to explicitly close the Query once all required work has 
 Observe that we may exit the loop without exhausting all solutions, so we make sure we close the query.
 
 
-## Nesting Queries in the same JVM Thread
+## Nesting queries in the same JVM thread
 
 As stated, once a Query is activated in a JVM thread, a Prolog engine is attached to the thread (and the query). The thread itself can issue nested queries of different sort and they will all make use of the same engine without blocking. This is good. 
 
@@ -113,7 +116,7 @@ This will break if `query2` can yield more than one solution, because it will st
 For sure, you do not want to see this... :-)
 
 
-## Passing Around Queries Across Threads
+## Passing queries between threads
 
 Passing Queries around threads is dangerous, due to the way that these are associated to Prolog engines attached the the thread a query is running on. Unless really needed, I recommend not doing so; it is best to duplicate the query.
 
@@ -139,7 +142,7 @@ it is not possible to run the same query object _simultaneously_ in different th
 Importantly, in the second case, when thread `B` tries to fetch the next solution, it will continue where thread `A` left, because the query remained open. That is, if thread `A` fetched the first 5 solutions and then died completely (the thread), then thread `B` will start from solution 6 onwards. Again, if thread `B` tries to fetch a solution while thread `A`  is still active with the query opened and an engine attached, segmentation fault will occur: the query is active in a Prolog engine, and that engine is already  attached to thread `A`.
 
 
-## More Information & Acknowledgments
+## More information & acknowledgments
 
 Much of the information reported here was obtained from @anionic and @JanWielemaker!
 
