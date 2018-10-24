@@ -56,6 +56,7 @@ For coding convenience, the major methods of ``Term`'s concrete subclasses
 this reduces the need for coercions.
 
 method | Atom | Compound | Float | Integer | Variable | JRef
+------ | ---- | -------- | ----- | ------- | -------- | ----
 arg(int) | JPLException | Term | JPLException | JPLException | JPLException | JPLException
 args() | Term[] {} | Term[] {...} | Term[] {} | Term[] {} | JPLException | Term[] {}
 arity() | 0 | 0+ | 0 | 0 | JPLException | 0
