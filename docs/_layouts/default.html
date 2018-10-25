@@ -246,6 +246,11 @@
 					});
 					document.querySelector('.headbar0,.mainbar0').addEventListener('click', function() {});
 				});
+				function scrollto(id) {
+					// var e = document.getElementById(id);
+					// $('html,body').unbind().animate({scrollTop: $(element).offset().top-50},'slow');
+					document.querySelector('#'+id).scrollIntoView({behavior:'smooth'});
+				}
 			</script>
 		</head>
 		<body>
@@ -254,7 +259,7 @@
 					<ul class="navbar2 closed">
 						<li class="level1"><a href="PrologApi">Prolog API</a></li>
 						<li class="level2" id="PrologApiOverview"><a href="PrologApiOverview">overview</a></li>
-						<li class="level3" id="PrologApiOverview"><a href="PrologApiOverview#introduction">Introduction</a></li>
+						<li class="level3" id="PrologApiOverview"><span onclick="scrollto('introduction')">Introduction</span></li>
 						<li class="level2"><a href="PrologApiReference">reference</a></li>
 						
 						<li class="level1"><a href="JavaApi">Java API</a></li>
