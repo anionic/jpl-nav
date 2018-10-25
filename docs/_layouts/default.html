@@ -76,18 +76,16 @@
 				}
 				.navbar1 { /* invisible frame-of-reference for .navbar2 */
 					left: 0;
-					margin: 50px auto 0 auto; /* horiz centred below headbar */
+					margin: 0 auto 0 auto; /* horiz centred below headbar */
 					max-width: 1000px;
 					position: fixed; /* does not scroll with content */
 					right: 0;
-					topQ: 50px; /* immediately below headbar */
+					top: 50px; /* immediately below headbar */
 					visibility: hidden; /* don't mask any links beneath */
 				}
 				.navbar2 { /* navigation sidebar */
 					background: #FFFFFF;
-					displayQ: block;
 					float: right; /* to RH edge of central zone */
-					list-styleQ: none;
 					margin: 0 0 0 0;
 					padding: 0 0 0 0;
 					visibility: visible;
@@ -99,9 +97,7 @@
 					}
 				}
 				.navbar2 > li { /* navigation sidebar item */
-					displayQ: block;
 					list-style: none;
-					text-alignQ: left;
 				}
 				.navbar2 > li > a { /* navigation sidebar item content */
 					display: block; /* enable top & bottom padding, maximise clickable area */
