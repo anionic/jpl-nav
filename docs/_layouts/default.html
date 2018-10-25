@@ -13,10 +13,7 @@
 					color: #000000;
 					height: 100%; /* good practice; I forget why ;-) */
 					margin: 0 0 0 0; /* override browser defaults */
-					padding-top: 0; /* experiment */
-					padding-right: 0; /* override browser default */
-					padding-bottom: 20px; /* avoid tailbar */
-					padding-left: 0; /* override browser default */
+					padding: 0 0 0 0; /* override browser defaults */
 					width: 100%;
 				}
 				body,
@@ -135,25 +132,9 @@
 				.navbar2 > li > a:focus {
 					outline: 1px solid #FFC0C0; /* thinner focus outline looks better against (nearly) black background */
 				}
-				.navbar2 > li > a:hover {
+				.navbar2 > li > :hover {
 					background-color: #F0F0F0;
-					text-decoration: underline;
-				}
-				.tailbar1 {
-					background-color: #E0E0FF; /* same as headbar */
-					bottom: 0;
-					height: 12px; /* 20px gross */
-					left: 0;
-					margin: 0 auto 0 auto; /* centred in wide viewports */
-					max-width: 1000px; /* same as headbar */
-					padding: 3px 5px 5px 5px;
-					position: fixed;
-					right: 0;
-				}
-				@media all and (max-width: 800px) {
-					.tailbar1 {
-						display: none;
-					}
+					text-decoration: underline; /* lest it's a link */
 				}
 				.highlight .hll { background-color: #ffffcc }
 				.highlight .c { color: #999988; font-style: italic } /* Comment */
@@ -218,6 +199,7 @@
 				.highlight .il { color: #009999 } /* Literal.Number.Integer.Long */
 				pre.highlight {
 					background: #F6F8FA;
+					display: table;
 				  padding: 3px 5px 3px 5px;
 				}
 			</style>
@@ -262,7 +244,8 @@
 					<li class="level1"><a href="PrologApi">Prolog API</a></li>
 					<li class="level2 navPrologApiOverview"><a href="PrologApiOverview" title="Prolog API overview">overview</a></li>
 					<li class="level3 navPrologApiOverview"><span onclick="scrollToId('introduction')">Introduction</span></li>
-					<li class="level3 navPrologApiOverview"><span onclick="scrollToId('representation-of-java-values-and-references-within-prolog')">Introduction</span></li>
+					<li class="level3 navPrologApiOverview"><span onclick="scrollToId('jpl-types-java-types-as-seen-by-prolog')">JPL types</span></li>
+					<li class="level3 navPrologApiOverview"><span onclick="scrollToId('representation-of-java-values-and-references-within-prolog')">Representation of Java values and references within Prolog</span></li>
 					<li class="level2"><a href="PrologApiReference">reference</a></li>
 
 					<li class="level1"><a href="JavaApi">Java API</a></li>
@@ -289,11 +272,5 @@
 					<li class="level2"><a href="ReleaseNotes202">2.0.2</a></li>
 				</ul>
 			</div>
-			<div class="tailbar1">
-				page.path={{page.path}}
-				page.title={{page.title}}
-				page.url={{page.url}}
-				page.id={{page.id}}
-			</div>		
 		</body>
 </html>
