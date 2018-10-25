@@ -248,9 +248,14 @@
 					document.querySelector('.headbar0,.mainbar0').addEventListener('click', function() {});
 				});
 				function scrollto(id) {
-					// var e = document.getElementById(id);
+					var element = document.getElementById(id);
 					// $('html,body').unbind().animate({scrollTop: $(element).offset().top-50},'slow');
-					document.querySelector('#'+id).scrollIntoView({behavior:'smooth'});
+					// document.querySelector('#'+id).scrollIntoView({behavior:'smooth'});
+					window.scrollTo({
+						'behavior': 'smooth',
+						'left': 0,
+						'top': element.offsetTop-50
+					});
 				}
 			</script>
 		</head>
