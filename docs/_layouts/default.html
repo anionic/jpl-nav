@@ -124,6 +124,12 @@
 					font-size: 90%;
 					padding-left: 10px;
 				}
+				.navbar2 > li.level3 {
+					display:  none;
+				}
+				.navbar2 > li.level3.shown {
+					display:  block;
+				}
 				.navbar2 > li.level3 > div { /* indented navigation sidebar item content */
 					color: #800000; /* distinguish from page links */
 					cursor: pointer; /* fake link appearance */
@@ -215,6 +221,9 @@
 						document.querySelector('.navbar2').classList.add('closed');
 					});
 					// document.querySelector('.headbar,.mainbar').addEventListener('click', function() {});
+					document.querySelectorAll('.navbar2 > .level3.nav{{page.path}}').forEach(function(e) {
+						e.classList.add('shown');
+					});
 				});
 				function scrollToId(id) {
 					try {
