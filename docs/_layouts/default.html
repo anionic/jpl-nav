@@ -221,7 +221,8 @@
 						document.querySelector('.navbar2').classList.add('closed');
 					});
 					// document.querySelector('.headbar,.mainbar').addEventListener('click', function() {});
-					document.querySelectorAll('.navbar2 > .level3.nav{{page.path}}').forEach(function(e) {
+					var basename = {{page.path}}.replace(/\.[^/.]+$/, "");
+					document.querySelectorAll('.navbar2 > .level3.nav' + basename).forEach(function(e) {
 						e.classList.add('shown');
 					});
 				});
