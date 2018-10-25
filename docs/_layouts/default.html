@@ -23,7 +23,7 @@
 				button { /* button seems not to inherit font-family from body, at least in Firefox */
 					font-family: Arial,Helvetica,sans-serif;
 				}
-				.headbar1 { /* limited width, centred */
+				.headbar { /* limited width, centred */
 					background-color: #E0E0FF; /* same as tailbar */
 					height: 50px; /* = body.padding-top */
 					left: 0; /* full width from here... */
@@ -33,16 +33,16 @@
 					right: 0; /* ...to here */
 					top: 0; /* at very top of viewport */
 				}
-				.headbar1 > span { /* banner text */
+				.headbar > span { /* banner text */
 					color: #000080; /* dark blue */
 					font-size: 250%;
 					margin-left: 5px; /* same as content in mainbar */
 				}
-				.headbar1 > div.icon { /* menu burger icon */
+				.headbar > div.icon { /* menu burger icon */
 					display: none; /* shown only below 800px viewport width */
 				}
 				@media all and (max-width: 800px) {
-					.headbar1 > div.icon {
+					.headbar > div.icon {
 						background: #FFFFFF;
 						cursor: pointer; /* it's clickable, so fake this link styling */
 						display: block; /* show below 800px */
@@ -52,26 +52,26 @@
 						top: 5px;
 					}
 				}
-				.headbar1 > div.icon:hover {
+				.headbar > div.icon:hover {
 					background-color: #C0C0C0;
 				}
-				.headbar1 > div.icon > div.bar { /* each of three bars for "burger" icon lookalike */
+				.headbar > div.icon > div.bar { /* each of three bars for "burger" icon lookalike */
 					background-color: #0067D8;
 					height: 3px;
 					margin: 3px auto 0 auto;
 					width: 18px;
 				}
-				.headbar1 > div.icon:hover > div.bar {
+				.headbar > div.icon:hover > div.bar {
 					background-color: #FF0000;
 				}
-				.headbar1 > div.icon > div.legend { /* the word "menu", in case it isn't obvious ;-) */
+				.headbar > div.icon > div.legend { /* the word "menu", in case it isn't obvious ;-) */
 					color: #0067D8;
 					display: block;
 					font-size: 10px;
 					padding: 3px 0 0 0;
 					text-align: center;
 				}
-				.headbar1 > div.icon:hover > div.legend {
+				.headbar > div.icon:hover > div.legend {
 					color: #FF0000;
 				}
 				.navbar1 { /* invisible frame-of-reference for .navbar2 */
@@ -84,12 +84,12 @@
 					visibility: hidden; /* don't mask any links beneath */
 				}
 				.navbar2 { /* navigation sidebar */
-					background: #FFFFFF;
+					backgroundQ: #FFFFFF;
 					float: right; /* to RH edge of central zone */
 					margin: 0 0 0 0;
 					padding: 0 0 0 0;
 					visibility: visible;
-					width: 195px;
+					width: 200px;
 				}
 				@media all and (max-width: 800px) {
 					.navbar2.closed {
@@ -122,29 +122,23 @@
 					background-color: #F0F0F0;
 					text-decoration: underline;
 				}
-				.mainbar1 { /* invisible frame-of-reference for mainbar2 */
-					margin: 50px auto 0 auto; /* horiz centred below headbar */
-					max-width: 1000px; /* width-limited in wide viewports */
-					position: relative; /* prevent navbar stacking over it */
-					visibility: hidden; /* don't mask any links beneath */
-				}
-				.mainbar2 { /* avoids nav */
+				.mainbar { /* avoids nav */
 					background-color: #FFFFFF;
-					margin-left: -200px; /* trick for making it fit beside navbar */
-					max-width: 790px; /* 1000 - (5 + 205) */
+					margin-leftQ: -200px; /* trick for making it fit beside navbar */
+					margin: 0 auto 0 auto; /* horiz centred */
+					max-width: 785px; /* 1000 - (5 + 210) */
 					padding-top: 0;
-					padding-right: 5px; /* cosmatic */
+					padding-right: 210px; /* gutter + navbar width */
 					padding-bottom: 0;
-					padding-left: 205px; /* cancels margin, adds cosmetic 5px */
-					visibility: visible;
+					padding-left: 5px; /* cosmetic 5px */
+					visibilityQ: visible;
 				}
 				@media all and (max-width: 800px) {
-					.mainbar2 {
-						margin-left: 0; /* don't leave space for nav */
-						padding-left: 5px;
+					.mainbar {
+						padding-right: 5px; /* don't leave space for nav */
 					}
 				}
-				.mainbar2 > h1 { /* embedded in headbar; not shown in mainbar */
+				.mainbar > h1 { /* embedded in headbar; not shown in mainbar */
 						display: none;
 				}
 				.tailbar1 {
@@ -231,7 +225,7 @@
 			</style>
 			<script type="text/javascript">
 				document.addEventListener('DOMContentLoaded', function(event) {
-					document.querySelector('.headbar1 > .icon').addEventListener('click', function(event) {
+					document.querySelector('.headbar > .icon').addEventListener('click', function(event) {
 						document.querySelector('.navbar2').classList.toggle('closed');
 						event.stopPropagation();
 						event.preventDefault();
@@ -239,7 +233,7 @@
 					document.querySelector('body').addEventListener('click', function(event) {
 						document.querySelector('.navbar2').classList.add('closed');
 					});
-					// document.querySelector('.headbar1,.mainbar2').addEventListener('click', function() {});
+					// document.querySelector('.headbar,.mainbar').addEventListener('click', function() {});
 				});
 				function scrollToId(id) {
 					try {
@@ -253,6 +247,18 @@
 			</script>
 		</head>
 		<body>
+			<div class="mainbar">
+				{{ content }}
+			</div>
+			<div class="headbar">
+				<span>JPL {{ page.title }}</span>
+				<div class="icon">
+					<div class="bar"></div>
+					<div class="bar"></div>
+					<div class="bar"></div>
+					<div class="legend">menu</div>
+				</div>
+			</div>
 			<div class="navbar1">
 				<ul class="navbar2 closed">
 					<li class="level1"><a href="PrologApi">Prolog API</a></li>
@@ -284,20 +290,6 @@
 					<li class="level2"><a href="ReleaseNotes300">3.0.0</a></li>
 					<li class="level2"><a href="ReleaseNotes202">2.0.2</a></li>
 				</ul>
-			</div>
-			<div class="mainbar1">
-				<div class="mainbar2">
-					{{ content }}
-				</div>
-			</div>
-			<div class="headbar1">
-				<span>JPL {{ page.title }}</span>
-				<div class="icon">
-					<div class="bar"></div>
-					<div class="bar"></div>
-					<div class="bar"></div>
-					<div class="legend">menu</div>
-				</div>
 			</div>
 			<div class="tailbar1">
 				page.path={{page.path}}
