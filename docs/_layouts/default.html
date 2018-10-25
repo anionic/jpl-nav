@@ -43,11 +43,11 @@
 				.headbar { /* limited width, centred */
 					background-color: #E0E0FF; /* same as tailbar */
 					height: 50px; /* = body.padding-top */
-					left: 50%; /* full width from here... */
+					left: 0; /* full width from here (IE8+) */
 					margin: 0 auto 0 auto; /* horiz centred */
 					max-width: 1000px; /* limited in wide viewports */
 					position: fixed; /* doesn't scroll with content */
-					right: 50%; /* ...to here */
+					right: 0; /* ...to here (IE8+) */
 					top: 0; /* at very top of viewport */
 				}
 				.headbar > span { /* banner text */
