@@ -236,13 +236,16 @@
 				});
 				function scrollToId(id) {
 					try {
-						window.scrollTo({
-							'behavior': 'smooth',
-							'left': 0,
-							'top': document.getElementById(id).offsetTop - 55 // 50px headbar + 5px cosmetic
-						});
-						// document.getElementById(id).scrollIntoView(); /* experiment */
-					} finally {}
+						if (window.navigator.userAgent.indexOf("Trident/7.0") > -1) { // it's IE11
+							document.getElementById(id).scrollIntoView(); // best we can do for now
+						} else {
+							window.scrollTo({
+								'behavior': 'smooth',
+								'left': 0,
+								'top': document.getElementById(id).offsetTop - 55 // 50px headbar + 5px cosmetic
+							});
+						}
+					} finally {} // lesat something goes wrong
 				}
 			</script>
 		</head>
