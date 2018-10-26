@@ -2,12 +2,11 @@
 
 ## Core API
 
-### jpl_new(+X, +Args, -V)
+### `jpl_new(+X, +Args, -V)`
 
 Create a new Java object.
 
 X can be:
-
 * an atomic classname, e.g. 'java.lang.String' (or 'Ljava.lang.String;');
 * a suitable type, i.e. any class(_,_), array(_) or primitive type (e.g. byte) but not null or void;
 * an atomic descriptor, e.g. '[I';
@@ -18,7 +17,7 @@ Args is typically a list of datums (values or jrefs) to be passed to the appropr
 If, however, X denotes an array type and Args is a non-negative integer,
 then V is a new array of that many elements, initialised to Java's default value for the base type.
 
-'''prolog
+```prolog
 ?- jpl_new(array(byte), 4, JRef), jpl_array_to_list(JRef, Ds).
 JRef = <jref>(0x12345678),
 Ds = [0, 0, 0, 0].
