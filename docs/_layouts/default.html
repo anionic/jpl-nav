@@ -132,6 +132,10 @@
 					font-size: 90%;
 					padding-left: 13px; /* 3 + 10 */
 				}
+				.navbar3 > li > a, { /* level 1 & 2 links */
+				.navbar3 > li > a:visited { /* ditto once visited */
+					color: #000000;
+				}
 				.navbar3 > li.level3 {
 					display:  none;
 				}
@@ -148,7 +152,7 @@
 					outline: 1px solid #FFC0C0; /* thinner focus outline looks better against (nearly) black background */
 				}
 				.navbar3 > li > :hover {
-					background-color: #F0F0F0;
+					background-color: #FFF0F0; /* faint pink, distinct from background */
 					text-decoration: underline; /* lest it's a link */
 				}
 				.highlight .hll { background-color: #ffffcc }
