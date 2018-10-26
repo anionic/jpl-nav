@@ -1,4 +1,4 @@
-# / Java API / overview
+# JPL -  Java API - Overview
 
  * [The Class Hierarchy](#the-class-hierarchy)
  * [Initializing and Terminating Prolog](#initializing-and-terminating-prolog)
