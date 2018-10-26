@@ -1,4 +1,4 @@
-# / Prolog API - Reference
+# JPL - Prolog API - Reference
 
 ## Core API
 
