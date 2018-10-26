@@ -52,7 +52,7 @@
 					border-top: 1px solid #808080;
 					height: 49px; /* = body.padding-top - 1 (border) */
 					margin: 0 auto 0 auto; /* horiz centred */
-					max-width: 1000px; /* limited in wide viewports */
+					max-width: 998px; /* lie within mainbar border */
 				}
 				.headbar2 > span { /* banner text */
 					color: #000080; /* dark blue */
@@ -110,7 +110,7 @@
 					background: #F0F0FF; /* mask mainbar in narrow viewports */
 					border: 1px solid #808080;
 					float: right; /* to RH edge of navbar2 */
-					margin: 0 0 0 0; /* override ul defaults */
+					margin: 0 3px 0 0; /* override ul defaults */
 					padding: 0 0 0 0; /* override ul defaults */
 					visibility: visible; /* only this navbar part is visible, to avoid masking mainbar links beneath */
 					width: 198px; /* 200 - (1 + 1) border; matches mainbar padding */
