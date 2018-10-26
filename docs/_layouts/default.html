@@ -37,26 +37,28 @@
 				.mainbar > h1 { /* embedded in headbar; not shown in mainbar */
 						display: none;
 				}
-				.headbar { /* limited width, centred */
-					background-color: #E0E0FF; /* same as tailbar */
-					height: 50px; /* = body.padding-top */
+				.headbar1 { /* fixed top-aligned frame-of-reference for headbar2 */
 					left: 0; /* full width from here (IE8+) */
-					margin: 0 auto 0 auto; /* horiz centred */
-					max-width: 1000px; /* limited in wide viewports */
 					position: fixed; /* doesn't scroll with content */
 					right: 0; /* ...to here (IE8+) */
 					top: 0; /* at very top of viewport */
 				}
-				.headbar > span { /* banner text */
+				.headbar2 { /* limited width, centred */
+					background-color: #E0E0FF; /* same as tailbar */
+					height: 50px; /* = body.padding-top */
+					margin: 0 auto 0 auto; /* horiz centred */
+					max-width: 1000px; /* limited in wide viewports */
+				}
+				.headbar2 > span { /* banner text */
 					color: #000080; /* dark blue */
 					font-size: 250%;
 					margin-left: 5px; /* same as content in mainbar */
 				}
-				.headbar > div.icon { /* menu burger icon */
+				.headbar2 > div.icon { /* menu burger icon */
 					display: none; /* shown only below 800px viewport width */
 				}
 				@media all and (max-width: 800px) {
-					.headbar > div.icon {
+					.headbar2 > div.icon {
 						background: #FFFFFF;
 						cursor: pointer; /* it's clickable, so fake this link styling */
 						display: block; /* show below 800px */
@@ -66,26 +68,26 @@
 						top: 5px;
 					}
 				}
-				.headbar > div.icon:hover {
+				.headbar2 > div.icon:hover {
 					background-color: #C0C0C0;
 				}
-				.headbar > div.icon > div.bar { /* each of three bars for "burger" icon lookalike */
+				.headbar2 > div.icon > div.bar { /* each of three bars for "burger" icon lookalike */
 					background-color: #0067D8;
 					height: 3px;
 					margin: 3px auto 0 auto;
 					width: 18px;
 				}
-				.headbar > div.icon:hover > div.bar {
+				.headbar2 > div.icon:hover > div.bar {
 					background-color: #FF0000;
 				}
-				.headbar > div.icon > div.legend { /* the word "menu", in case it isn't obvious ;-) */
+				.headbar2 > div.icon > div.legend { /* the word "menu", in case it isn't obvious ;-) */
 					color: #0067D8;
 					display: block;
 					font-size: 10px;
 					padding: 3px 0 0 0;
 					text-align: center;
 				}
-				.headbar > div.icon:hover > div.legend {
+				.headbar2 > div.icon:hover > div.legend {
 					color: #FF0000;
 				}
 				.navbar1 { /* invisible frame-of-reference for .navbar2 */
@@ -212,7 +214,7 @@
 			</style>
 			<script type="text/javascript">
 				document.addEventListener('DOMContentLoaded', function(event) {
-					document.querySelector('.headbar > .icon').addEventListener('click', function(event) {
+					document.querySelector('.headbar2 > .icon').addEventListener('click', function(event) {
 						document.querySelector('.navbar2').classList.toggle('closed');
 						event.stopPropagation();
 						event.preventDefault();
@@ -220,7 +222,7 @@
 					document.querySelector('body').addEventListener('click', function(event) {
 						document.querySelector('.navbar2').classList.add('closed');
 					});
-					// document.querySelector('.headbar,.mainbar').addEventListener('click', function() {});
+					// document.querySelector('.headbar2,.mainbar').addEventListener('click', function() {});
 					var basename = '{{page.path}}'.replace(/\.[^/.]+$/, "");
 					document.querySelectorAll('.navbar2 > .level3.nav' + basename).forEach(function(e) {
 						e.classList.add('shown');
@@ -241,13 +243,15 @@
 			<div class="mainbar">
 				{{ content }}
 			</div>
-			<div class="headbar">
-				<span>JPL {{ page.title }}</span>
-				<div class="icon">
-					<div class="bar"></div>
-					<div class="bar"></div>
-					<div class="bar"></div>
-					<div class="legend">menu</div>
+			<div class="headbar1">
+				<div class="headbar2">
+					<span>JPL {{page.title}}</span>
+					<div class="icon">
+						<div class="bar"></div>
+						<div class="bar"></div>
+						<div class="bar"></div>
+						<div class="legend">menu</div>
+					</div>
 				</div>
 			</div>
 			<div class="navbar1">
