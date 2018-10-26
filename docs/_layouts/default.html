@@ -125,12 +125,12 @@
 					display: block; /* enable top & bottom padding, maximise clickable area */
 					line-height: 1em; /* experiment */
 					margin: 0 0 0 0; /* override (any?) defaults */
-					padding: 3px 0 3px 0;
+					padding: 3px 0 3px 3px;
 					text-decoration: none; /* suppress default */
 				}
 				.navbar3 > li.level2 > a { /* indented navigation sidebar item content */
 					font-size: 90%;
-					padding-left: 10px;
+					padding-left: 13px; /* 3 + 10 */
 				}
 				.navbar3 > li.level3 {
 					display:  none;
@@ -142,7 +142,7 @@
 					color: #800000; /* distinguish from page links */
 					cursor: pointer; /* fake link appearance */
 					font-size: 80%;
-					padding-left: 20px;
+					padding-left: 23px; /* 3 + 10 + 10 */
 				}
 				.navbar3 > li > a:focus {
 					outline: 1px solid #FFC0C0; /* thinner focus outline looks better against (nearly) black background */
@@ -230,32 +230,18 @@
 					});
 					// document.querySelector('.headbar2,.mainbar').addEventListener('click', function() {});
 					var basename = '{{page.path}}'.replace(/\.[^/.]+$/, ""); /* stackoverflow 4250364 */
-					if (window.NodeList && !NodeList.prototype.forEach) { // polyfill for e.g. IE11
+					if (window.NodeList && !NodeList.prototype.forEach) { // forEach polyfill for e.g. IE11
 						NodeList.prototype.forEach = Array.prototype.forEach;
 					}
 					document.querySelectorAll('.navbar3 > .level3.nav' + basename).forEach(function(e) {
-						e.classList.add('shown');
+						e.classList.add('shown'); // show all level3 pseudo-links relevant to current page
 					});
 				});
-				function scrollToId(id) {
-					document.getElementById(id).scrollIntoView(); // best we can do for now
-					window.scrollBy(0, -55); // headbar.height + cosmetic 5px
-/*					try { // in case something below throws an exception
-						if (window.navigator.userAgent.indexOf("Trident/7.0") > -1) { // it's IE11
-							document.getElementById(id).scrollIntoView(); // best we can do for now
-							window.scrollBy(0, -50); // headbar.height + cosmetic 5px
-						} else if (window.navigator.userAgent.indexOf('Edge') > -1) { // it's Edge
-							document.getElementById(id).scrollIntoView(); // best we can do for now
-							window.scrollBy(0, -50); // experiment
-						} else {
-							window.scrollTo({
-								'behavior': 'smooth',
-								'left': 0,
-								'top': document.getElementById(id).offsetTop - 55 // 50px headbar + 5px cosmetic
-							});
-						}
+				function scrollToId(id) { // two stages below are more widely supported that window.scrollTo
+					try { // in case something below throws an exception
+						document.getElementById(id).scrollIntoView(); // IE11, Edge, Firefox, Chrome
+						window.scrollBy(0, -55); // headbar.height + cosmetic 5px
 					} finally {} // syntactically mandatory
- */
 				}
 			</script>
 		</head>
