@@ -26,7 +26,7 @@
 					background-color: #FFFFFF;
 					border: 1px solid #808080;
 					margin: 0 auto 0 auto; /* horiz centred */
-					max-width: 783px; /* 1000 - (5 + 210) padding - (1 + 1) border*/
+					max-width: 773px; /* 1000 - (10 + 215) padding - (1 + 1) border*/
 					padding-top: 50px; /* as headbar2.height */
 					padding-right: 215px; /* gutter + navbar3.width */
 					padding-bottom: 5px; /* cosmetic */
@@ -49,7 +49,8 @@
 				}
 				.headbar2 { /* limited width, centred */
 					background-color: #E0E0FF; /* same as tailbar */
-					height: 50px; /* = body.padding-top */
+					border-top: 1px solid #808080;
+					height: 49px; /* = body.padding-top - 1 (border) */
 					margin: 0 auto 0 auto; /* horiz centred */
 					max-width: 1000px; /* limited in wide viewports */
 				}
@@ -98,7 +99,7 @@
 					left: 0;
 					position: fixed; /* does not scroll with content */
 					right: 0;
-					top: 50px; /* immediately below headbar */
+					top: 52px; /* 2px below headbar */
 					visibility: hidden; /* don't mask mainbar links; https://blog.lysender.com/2014/09/css-elements-covered-by-a-container-div-not-clickable */
 				}
 				.navbar2 { /* invisible frame-of-reference for .navbar3 */
