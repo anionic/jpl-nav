@@ -37,7 +37,7 @@
 				.mainbar > h1 { /* embedded in headbar; not shown in mainbar */
 						display: none;
 				}
-				.headbar1 { /* fixed top-aligned frame-of-reference for headbar2 */
+				.headbar1 { /* IE11 needs this separate fixed top-aligned frame-of-reference for headbar2 */
 					left: 0; /* full width from here (IE8+) */
 					position: fixed; /* doesn't scroll with content */
 					right: 0; /* ...to here (IE8+) */
@@ -90,58 +90,60 @@
 				.headbar2 > div.icon:hover > div.legend {
 					color: #FF0000;
 				}
-				.navbar1 { /* invisible frame-of-reference for .navbar2 */
+				.navbar1 { /* IE11 needs this separate fixed top-aligned frame-of-reference for navbar2 */
 					left: 0;
-					margin: 0 auto 0 auto; /* horiz centred below headbar */
-					max-width: 1000px;
 					position: fixed; /* does not scroll with content */
 					right: 0;
 					top: 50px; /* immediately below headbar */
-					visibility: hidden; /* don't mask any links beneath */
+					visibility: hidden; /* overlays mainbar but mustn't mask links */
 				}
-				.navbar2 { /* navigation sidebar */
+				.navbar2 { /* invisible frame-of-reference for .navbar3 */
+					margin: 0 auto 0 auto; /* horiz centred below headbar */
+					max-width: 1000px;
+				}
+				.navbar3 { /* navigation sidebar */
 					background: #FFFFFF; /* mask mainbar in narrow viewports */
-					float: right; /* to RH edge of central zone */
-					margin: 0 0 0 0;
-					padding: 0 0 0 0;
-					visibility: visible;
-					width: 200px;
+					float: right; /* to RH edge of navbar2 */
+					margin: 0 0 0 0; /* override ul defaults */
+					padding: 0 0 0 0; /* override ul defaults */
+					visibility: visible; /* only this navbar part is visible, to avoid masking mainbar links beneath */
+					width: 200px; /* arbitrary; matches mainbar padding */
 				}
 				@media all and (max-width: 800px) {
-					.navbar2.closed {
+					.navbar3.closed {
 						display: none; /* normally shown */
 					}
 				}
-				.navbar2 > li { /* navigation sidebar item */
+				.navbar3 > li { /* navigation sidebar item */
 					list-style: none;
 				}
-				.navbar2 > li > * { /* navigation sidebar item content */
+				.navbar3 > li > * { /* navigation sidebar item content */
 					display: block; /* enable top & bottom padding, maximise clickable area */
 					line-height: 1em; /* experiment */
 					margin: 0 0 0 0; /* override (any?) defaults */
 					padding: 3px 0 3px 0;
 					text-decoration: none; /* suppress default */
 				}
-				.navbar2 > li.level2 > a { /* indented navigation sidebar item content */
+				.navbar3 > li.level2 > a { /* indented navigation sidebar item content */
 					font-size: 90%;
 					padding-left: 10px;
 				}
-				.navbar2 > li.level3 {
+				.navbar3 > li.level3 {
 					display:  none;
 				}
-				.navbar2 > li.level3.shown {
+				.navbar3 > li.level3.shown {
 					display:  block;
 				}
-				.navbar2 > li.level3 > div { /* indented navigation sidebar item content */
+				.navbar3 > li.level3 > div { /* indented navigation sidebar item content */
 					color: #800000; /* distinguish from page links */
 					cursor: pointer; /* fake link appearance */
 					font-size: 80%;
 					padding-left: 20px;
 				}
-				.navbar2 > li > a:focus {
+				.navbar3 > li > a:focus {
 					outline: 1px solid #FFC0C0; /* thinner focus outline looks better against (nearly) black background */
 				}
-				.navbar2 > li > :hover {
+				.navbar3 > li > :hover {
 					background-color: #F0F0F0;
 					text-decoration: underline; /* lest it's a link */
 				}
@@ -213,18 +215,18 @@
 				}
 			</style>
 			<script type="text/javascript">
-				document.addEventListener('DOMContentLoaded', function(event) {
+				document.addEventListener('DOMContentLoaded', function(event) { /* akin to jQuery document.ready() */
 					document.querySelector('.headbar2 > .icon').addEventListener('click', function(event) {
-						document.querySelector('.navbar2').classList.toggle('closed');
+						document.querySelector('.navbar3').classList.toggle('closed');
 						event.stopPropagation();
 						event.preventDefault();
 					});
-					document.querySelector('body').addEventListener('click', function(event) {
-						document.querySelector('.navbar2').classList.add('closed');
+					document.querySelector('body').addEventListener('click', function(event) { /* click anywhere... */
+						document.querySelector('.navbar3').classList.add('closed'); /* ...hides navbar in narrow viewports */
 					});
 					// document.querySelector('.headbar2,.mainbar').addEventListener('click', function() {});
 					var basename = '{{page.path}}'.replace(/\.[^/.]+$/, "");
-					document.querySelectorAll('.navbar2 > .level3.nav' + basename).forEach(function(e) {
+					document.querySelectorAll('.navbar3 > .level3.nav' + basename).forEach(function(e) {
 						e.classList.add('shown');
 					});
 				});
@@ -255,37 +257,39 @@
 				</div>
 			</div>
 			<div class="navbar1">
-				<ul class="navbar2 closed">
-					<li class="level1"><a href="PrologApi">Prolog API</a></li>
-					<li class="level2 navPrologApiOverview"><a href="PrologApiOverview" title="Prolog API overview">overview</a></li>
-					<li class="level3 navPrologApiOverview"><div onclick="scrollToId('introduction')">Introduction</div></li>
-					<li class="level3 navPrologApiOverview"><div onclick="scrollToId('jpl-types-java-types-as-seen-by-prolog')">JPL types</div></li>
-					<li class="level3 navPrologApiOverview"><div onclick="scrollToId('representation-of-java-values-and-references-within-prolog')">Representation of Java values and references within Prolog</div></li>
-					<li class="level2"><a href="PrologApiReference">reference</a></li>
+				<div class="navbar2">
+					<ul class="navbar3 closed">
+						<li class="level1"><a href="PrologApi">Prolog API</a></li>
+						<li class="level2 navPrologApiOverview"><a href="PrologApiOverview" title="Prolog API overview">overview</a></li>
+						<li class="level3 navPrologApiOverview"><div onclick="scrollToId('introduction')">Introduction</div></li>
+						<li class="level3 navPrologApiOverview"><div onclick="scrollToId('jpl-types-java-types-as-seen-by-prolog')">JPL types</div></li>
+						<li class="level3 navPrologApiOverview"><div onclick="scrollToId('representation-of-java-values-and-references-within-prolog')">Representation of Java values and references within Prolog</div></li>
+						<li class="level2"><a href="PrologApiReference">reference</a></li>
 
-					<li class="level1"><a href="JavaApi">Java API</a></li>
-					<li class="level2"><a href="JavaApiOverview" title="Java API overview">overview</a></li>
-					<li class="level2"><a href="http://www.swi-prolog.org/pldoc/jpl/java_api/javadoc/index.html">JavaDoc</a></li>
+						<li class="level1"><a href="JavaApi">Java API</a></li>
+						<li class="level2"><a href="JavaApiOverview" title="Java API overview">overview</a></li>
+						<li class="level2"><a href="http://www.swi-prolog.org/pldoc/jpl/java_api/javadoc/index.html">JavaDoc</a></li>
 
-					<li class="level1"><a href="Tutorial">Tutorials</a></li>
-					<li class="level2"><a href="TutorialGettingStarted">getting started</a></li>
-					<li class="level2"><a href="TutorialTypesOfQueries">types of queries</a></li>
-					<li class="level2"><a href="TutorialMultithreaded">multi-threaded queries</a></li>
-					<li class="level2"><a href="TutorialDeveloping">developing JPL</a></li>
+						<li class="level1"><a href="Tutorial">Tutorials</a></li>
+						<li class="level2"><a href="TutorialGettingStarted">getting started</a></li>
+						<li class="level2"><a href="TutorialTypesOfQueries">types of queries</a></li>
+						<li class="level2"><a href="TutorialMultithreaded">multi-threaded queries</a></li>
+						<li class="level2"><a href="TutorialDeveloping">developing JPL</a></li>
 
-					<li class="level1"><a href="Deployment">Deployment</a></li>
-					<li class="level2"><a href="DeploymentInstall">installing JPL</a></li>
-					<li class="level2"><a href="DeploymentMacos">JPL on MacOS</a></li>
+						<li class="level1"><a href="Deployment">Deployment</a></li>
+						<li class="level2"><a href="DeploymentInstall">installing JPL</a></li>
+						<li class="level2"><a href="DeploymentMacos">JPL on MacOS</a></li>
 
-					<li class="level1"><a href="ReleaseNotes">Release notes</a></li>
-					<li class="level2"><a href="ReleaseNotes750">7.5.0</a></li>
-					<li class="level2"><a href="ReleaseNotes740">7.4.0</a></li>
-					<li class="level2"><a href="ReleaseNotes701">7.0.1</a></li>
-					<li class="level2"><a href="ReleaseNotes303">3.0.3</a></li>
-					<li class="level2"><a href="ReleaseNotes302">3.0.2</a></li>
-					<li class="level2"><a href="ReleaseNotes300">3.0.0</a></li>
-					<li class="level2"><a href="ReleaseNotes202">2.0.2</a></li>
-				</ul>
+						<li class="level1"><a href="ReleaseNotes">Release notes</a></li>
+						<li class="level2"><a href="ReleaseNotes750">7.5.0</a></li>
+						<li class="level2"><a href="ReleaseNotes740">7.4.0</a></li>
+						<li class="level2"><a href="ReleaseNotes701">7.0.1</a></li>
+						<li class="level2"><a href="ReleaseNotes303">3.0.3</a></li>
+						<li class="level2"><a href="ReleaseNotes302">3.0.2</a></li>
+						<li class="level2"><a href="ReleaseNotes300">3.0.0</a></li>
+						<li class="level2"><a href="ReleaseNotes202">2.0.2</a></li>
+					</ul>
+				</div>
 			</div>
 		</body>
 </html>
