@@ -237,9 +237,10 @@
 				function scrollToId(id) {
 					try {
 						if (window.navigator.userAgent.indexOf("Trident/7.0") > -1) { // it's IE11
+							alert('IE11, apparently');
 							document.getElementById(id).scrollIntoView(); // best we can do for now
-						} else if (/Edge\/12./i.test(navigator.userAgent)) {
-							alert('Edge :-/');
+						} else if (/Edge\/12./i.test(navigator.userAgent)) { // /Edge/.test(navigator.userAgent)
+							alert('Edge, apparently');
 							document.getElementById(id).scrollIntoView(); // best we can do for now
 						} else {
 							window.scrollTo({
