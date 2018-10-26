@@ -103,7 +103,7 @@
 					max-width: 1000px;
 				}
 				.navbar3 { /* navigation sidebar */
-					background: #FFFFFF; /* mask mainbar in narrow viewports */
+					background: #F0F0FF; /* mask mainbar in narrow viewports */
 					float: right; /* to RH edge of navbar2 */
 					margin: 0 0 0 0; /* override ul defaults */
 					padding: 0 0 0 0; /* override ul defaults */
@@ -111,6 +111,9 @@
 					width: 200px; /* arbitrary; matches mainbar padding */
 				}
 				@media all and (max-width: 800px) {
+					.navbar3 {
+						border: 1px solid #808080;
+					}
 					.navbar3.closed {
 						display: none; /* normally shown */
 					}
@@ -226,7 +229,7 @@
 						document.querySelector('.navbar3').classList.add('closed'); /* ...hides navbar in narrow viewports */
 					});
 					// document.querySelector('.headbar2,.mainbar').addEventListener('click', function() {});
-					var basename = '{{page.path}}'.replace(/\.[^/.]+$/, "");
+					var basename = '{{page.path}}'.replace(/\.[^/.]+$/, ""); /* stackoverflow 4250364 */
 					document.querySelectorAll('.navbar3 > .level3.nav' + basename).forEach(function(e) {
 						e.classList.add('shown');
 					});
