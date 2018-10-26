@@ -239,11 +239,12 @@
 				});
 				function scrollToId(id) {
 					// alert(window.navigator.userAgent + ' is looking for ' + id);
-					try {
+					try { // in case something below throws an exception
 						if (window.navigator.userAgent.indexOf("Trident/7.0") > -1) { // it's IE11
 							document.getElementById(id).scrollIntoView(); // best we can do for now
 						} else if (window.navigator.userAgent.indexOf('Edge') > -1) { // it's Edge
 							document.getElementById(id).scrollIntoView(); // best we can do for now
+							window.scrollBy(-50, 0); // experiment
 						} else {
 							window.scrollTo({
 								'behavior': 'smooth',
@@ -251,7 +252,7 @@
 								'top': document.getElementById(id).offsetTop - 55 // 50px headbar + 5px cosmetic
 							});
 						}
-					} finally {} // lesat something goes wrong
+					} finally {} // syntactically mandatory
 				}
 			</script>
 		</head>
