@@ -235,6 +235,7 @@
 					});
 				});
 				function scrollToId(id) {
+					alert(window.navigator.userAgent + ' is looking for ' + id);
 					try {
 						if (window.navigator.userAgent.indexOf("Trident/7.0") > -1) { // it's IE11
 							alert('IE11, apparently');
