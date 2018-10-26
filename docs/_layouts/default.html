@@ -10,7 +10,7 @@
 					overflow-y: auto;
 				}
 				body {
-					background-color: #F0F0F0;
+					background-colorQ: #F0F0F0;
 					color: #000000;
 					line-height: 1.4; /* cosmetic experiment */
 					min-height: 100%; /* https://www.kirupa.com/html5/make_body_take_up_full_browser_height.htm */
@@ -24,16 +24,18 @@
 				}
 				.mainbar { /* avoids nav */
 					background-color: #FFFFFF;
+					border: 1px solid #808080;
 					margin: 0 auto 0 auto; /* horiz centred */
-					max-width: 785px; /* 1000 - (5 + 210) padding */
+					max-width: 783px; /* 1000 - (5 + 210) padding - (1 + 1) border*/
 					padding-top: 50px; /* as headbar2.height */
-					padding-right: 210px; /* gutter + navbar3.width */
+					padding-right: 215px; /* gutter + navbar3.width */
 					padding-bottom: 5px; /* cosmetic */
-					padding-left: 5px; /* cosmetic */
+					padding-left: 10px; /* cosmetic */
 				}
 				@media all and (max-width: 800px) {
 					.mainbar {
 						padding-right: 5px; /* don't leave space for nav */
+						padding-left: 5px;
 					}
 				}
 				.mainbar > h1 { /* embedded in headbar; not shown in mainbar */
@@ -105,11 +107,12 @@
 				}
 				.navbar3 { /* navigation sidebar */
 					background: #F0F0FF; /* mask mainbar in narrow viewports */
+					border: 1px solid #808080;
 					float: right; /* to RH edge of navbar2 */
 					margin: 0 0 0 0; /* override ul defaults */
 					padding: 0 0 0 0; /* override ul defaults */
 					visibility: visible; /* only this navbar part is visible, to avoid masking mainbar links beneath */
-					width: 200px; /* arbitrary; matches mainbar padding */
+					width: 198px; /* 200 - (1 + 1) border; matches mainbar padding */
 				}
 				@media all and (max-width: 800px) {
 					.navbar3 {
