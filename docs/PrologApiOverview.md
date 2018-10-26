@@ -81,7 +81,7 @@ Instances of JPL types are represented within Prolog as follows:
 -   ***void*** has only one value, represented as `@(void)`
 -   ***array*** and ***class instance*** references are represented (since 7.4) as *[blob](http://www.swi-prolog.org/pldoc/man?predicate=blob/2)s* of type `jref`, portrayed e.g. `<jref>(0x12345678)` but (like stream handles) with no source syntax acceptable to `read/1`.
 
-## Representation of Java types within Prolog (1): *structured* notation 
+## Java types: *structured* notation 
 
 The Prolog API allows Prolog applications to inspect, manipulate, and reason about the types of Java values, references, methods etc., and this section describes how these types themselves are represented.
 Predicates which pass these type representations include (the clue is in the name):
@@ -139,7 +139,7 @@ array(class([java,lang],['String'])
 
 This *structured* notation for Java types is a *term-encoding*, designed to be convenient for composition and decomposition by unification.
 
-## Representation of Java types within Prolog (2): *descriptor* notation 
+## Java types: *descriptor* notation 
 
 The *descriptor* notation for Java types is one of two textual notations employed by the JVM and the Java class libraries; JPL (necessarily) supports both (and supports conversion between all three representations).
 
@@ -157,7 +157,7 @@ Examples of descriptor notation:
 -   `'Ljava/util/Date;'` denotes the Java class `java.util.Date`
 -   `'(argument_types)return_type'` denotes the type of a method
 
-## Representation of Java types within Prolog (3): *classname* notation 
+## Java types: *classname* notation 
 
 The *classname* notation for Java types is the other textual notation employed by the JVM and the Java class libraries. It is a (seemingly unnecessary) variation on the *descriptor* notation, used by a few JNI
 routines. It has the slight advantage that, in the case of simple class types only, it resembles the Java source text notation for classes. This representation is supported only because certain JNI functions use it; it is used within JPL's implementation of `jpl_call/4` etc. You may encounter this notation when tracing JPL activity, but otherwise you need not know about it.
