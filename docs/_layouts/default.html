@@ -132,15 +132,15 @@
 					font-size: 90%;
 					padding-left: 13px; /* 3 + 10 */
 				}
-				.navbar3 > li > a, { /* level 1 & 2 links */
+				.navbar3 > li > a, /* level 1 & 2 links */
 				.navbar3 > li > a:visited { /* ditto once visited */
 					color: #000000;
 				}
-				.navbar3 > li.level3 {
-					display:  none;
+				.navbar3 > li.level3 { /* some pages have internal links */
+					display: none; /* normally not shown... */
 				}
 				.navbar3 > li.level3.shown {
-					display:  block;
+					display: block; /* ...unless given this class at page load */
 				}
 				.navbar3 > li.level3 > div { /* indented navigation sidebar item content */
 					color: #800000; /* distinguish from page links */
