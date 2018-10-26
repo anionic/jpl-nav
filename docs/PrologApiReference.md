@@ -2,20 +2,20 @@
 
 ## Core API
 
-### `jpl_new(+X, +Args, -V)`
+### jpl_new(+X, +Args, -V)
 
 Create a new Java object.
 
-X can be:
-* an atomic classname, e.g. 'java.lang.String' (or 'Ljava.lang.String;');
-* a suitable type, i.e. any class(_,_), array(_) or primitive type (e.g. byte) but not null or void;
-* an atomic descriptor, e.g. '[I';
-* a class object, i.e. an object whose type is class([java,lang],['Class']).
+*X* can be:
+* an atomic classname, e.g. `'java.lang.String'` (or `'Ljava.lang.String;'`)
+* a suitable type, i.e. any `class(_,_)`, `array(_)` or primitive type (e.g. `byte`) but not `null` or `void
+* an atomic descriptor, e.g. `'[I'`
+* a class object, i.e. an object whose type is `class([java,lang],['Class'])`
 
-Args is typically a list of datums (values or jrefs) to be passed to the appropriate constructor.
+*Args* is typically a list of datums (values or jrefs) to be passed to the appropriate constructor.
 
-If, however, X denotes an array type and Args is a non-negative integer,
-then V is a new array of that many elements, initialised to Java's default value for the base type.
+If, however, *X* denotes an array type and *Args* is a non-negative integer,
+then *V* is a new array of that many elements, initialised to Java's default value for the base type.
 
 ```prolog
 ?- jpl_new(array(byte), 4, JRef), jpl_array_to_list(JRef, Ds).
@@ -23,10 +23,10 @@ JRef = <jref>(0x12345678),
 Ds = [0, 0, 0, 0].
 ```
 
-If X denotes an array type and Args is a list of datums,
+If *X* denotes an array type and *Args* is a list of datums,
 each of which is (independently) castable to the array element type,
-then V is a new array of as many elements as Args has members,
-initialised to the results of casting the respective members of Args.
+then *V* is a new array of as many elements as *Args* has members,
+initialised to the results of casting the respective members of *Args*.
 
 ```prolog
 ?- jpl_new(array(byte), [1,1,2,3,5,8], JRef), jpl_array_to_list(JRef, Ds).
