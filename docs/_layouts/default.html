@@ -23,13 +23,12 @@
 				}
 				.mainbar { /* avoids nav */
 					background-color: #FFFFFF;
-					border-top: 50px solid #FFFFFF; /* experiment */
-					margin: 50px auto 0 auto; /* 50px was 0; horiz centred */
-					max-width: 785px; /* 1000 - (5 + 210) */
-					padding-top: 0; /* 0 was 50px */
-					padding-right: 210px; /* gutter + navbar width */
-					padding-bottom: 10px;
-					padding-left: 5px; /* cosmetic 5px */
+					margin: 0 auto 0 auto; /* horiz centred */
+					max-width: 785px; /* 1000 - (5 + 210) padding */
+					padding-top: 50px; /* as headbar2.height */
+					padding-right: 210px; /* gutter + navbar3.width */
+					padding-bottom: 5px; /* cosmetic */
+					padding-left: 5px; /* cosmetic */
 				}
 				@media all and (max-width: 800px) {
 					.mainbar {
@@ -237,12 +236,12 @@
 				});
 				function scrollToId(id) {
 					try {
-						//window.scrollTo({
-						//	'behavior': 'smooth',
-						//	'left': 0,
-						//	'top': document.getElementById(id).offsetTop - 50
-						//});
-						document.getElementById(id).scrollIntoView(); /* experiment */
+						window.scrollTo({
+							'behavior': 'smooth',
+							'left': 0,
+							'top': document.getElementById(id).offsetTop - 55 // 50px headbar + 5px cosmetic
+						});
+						// document.getElementById(id).scrollIntoView(); /* experiment */
 					} finally {}
 				}
 			</script>
