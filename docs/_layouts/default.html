@@ -236,14 +236,13 @@
 				});
 				function scrollToId(id) {
 					try {
-						window.scrollTo({
-							'behavior': 'smooth',
-							'left': 0,
-							'top': document.getElementById(id).offsetTop - 50
-						});
-					} catch (error) {
-						document.getElementById(id).scrollIntoView(); /* experiment, lest scrollTo NYI */
-					}
+						//window.scrollTo({
+						//	'behavior': 'smooth',
+						//	'left': 0,
+						//	'top': document.getElementById(id).offsetTop - 50
+						//});
+						document.getElementById(id).scrollIntoView(); /* experiment */
+					} finally {}
 				}
 			</script>
 		</head>
