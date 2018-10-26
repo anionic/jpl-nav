@@ -51,22 +51,19 @@ All Java values and object references which are passed between Prolog
 engines and Java VMs via JPL's Prolog API are seen as instances of types
 within this simplified JPL type system:
 
--   a ***datum*** (this jargon is introduced, out of necessity, to refer
-    to the union of *values* and *references*)
--   -   is a ***value*** (values are copied between Prolog and the JVM)
-    -   -   is a ***boolean***
-        -   or a ***char***
-        -   or a ***long***, ***int***, ***short*** or ***byte***
-        -   or a ***double*** or ***float***
-        -   or a ***string*** (an instance of *java.lang.String*)
-        -   or a ***void*** (an artificial value returned by calls to Java void methods)
-
-    -   or a ***reference***
-    -   -   is ***null***
-        -   or an ***object*** (held within the JVM, and represented in
-            Prolog by a canonical reference)
-        -   -   is an ***array***
-            -   or a ***class instance*** (other than of *java.lang.String*)
+ a ***datum*** (this jargon is introduced, out of necessity, to refer to the union of *values* and *references*)
+  is a ***value*** (values are copied between Prolog and the JVM)
+   is a ***boolean***
+   or a ***char***
+   or a ***long***, ***int***, ***short*** or ***byte***
+   or a ***double*** or ***float***
+   or a ***string*** (an instance of *java.lang.String*)
+   or a ***void*** (an artificial value returned by calls to Java void methods)
+  or a ***reference***
+   is ***null***
+   or an ***object*** (held within the JVM, and represented in Prolog by a canonical reference)
+    is an ***array***
+    or a ***class instance*** (other than of *java.lang.String*)
 
 ## Representation of Java values and references within Prolog
 
