@@ -1,4 +1,4 @@
-# JPL - Installing & compiling JPL 
+# JPL - Deployment - Installing & compiling JPL 
 
 Updated: October 12, 2018
 
