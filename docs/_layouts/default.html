@@ -230,6 +230,9 @@
 					});
 					// document.querySelector('.headbar2,.mainbar').addEventListener('click', function() {});
 					var basename = '{{page.path}}'.replace(/\.[^/.]+$/, ""); /* stackoverflow 4250364 */
+					if (window.NodeList && !NodeList.prototype.forEach) { // polyfill for e.g. IE11
+						NodeList.prototype.forEach = Array.prototype.forEach;
+					}
 					document.querySelectorAll('.navbar3 > .level3.nav' + basename).forEach(function(e) {
 						e.classList.add('shown');
 					});
