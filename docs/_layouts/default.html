@@ -238,6 +238,9 @@
 					try {
 						if (window.navigator.userAgent.indexOf("Trident/7.0") > -1) { // it's IE11
 							document.getElementById(id).scrollIntoView(); // best we can do for now
+						} else if (/Edge\/12./i.test(navigator.userAgent)) {
+							alert('Edge :-/');
+							document.getElementById(id).scrollIntoView(); // best we can do for now
 						} else {
 							window.scrollTo({
 								'behavior': 'smooth',
