@@ -238,11 +238,12 @@
 					});
 				});
 				function scrollToId(id) {
-					// alert(window.navigator.userAgent + ' is looking for ' + id);
-					try { // in case something below throws an exception
+					document.getElementById(id).scrollIntoView(); // best we can do for now
+					window.scrollBy(0, -55); // headbar.height + cosmetic 5px
+/*					try { // in case something below throws an exception
 						if (window.navigator.userAgent.indexOf("Trident/7.0") > -1) { // it's IE11
 							document.getElementById(id).scrollIntoView(); // best we can do for now
-							window.scrollBy(0, -50); // experiment
+							window.scrollBy(0, -50); // headbar.height + cosmetic 5px
 						} else if (window.navigator.userAgent.indexOf('Edge') > -1) { // it's Edge
 							document.getElementById(id).scrollIntoView(); // best we can do for now
 							window.scrollBy(0, -50); // experiment
@@ -254,6 +255,7 @@
 							});
 						}
 					} finally {} // syntactically mandatory
+ */
 				}
 			</script>
 		</head>
