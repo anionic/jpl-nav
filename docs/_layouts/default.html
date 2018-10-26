@@ -235,13 +235,11 @@
 					});
 				});
 				function scrollToId(id) {
-					alert(window.navigator.userAgent + ' is looking for ' + id);
+					// alert(window.navigator.userAgent + ' is looking for ' + id);
 					try {
 						if (window.navigator.userAgent.indexOf("Trident/7.0") > -1) { // it's IE11
-							alert('IE11, apparently');
 							document.getElementById(id).scrollIntoView(); // best we can do for now
-						} else if (/Edge\/17./i.test(navigator.userAgent)) {
-							alert('Edge, apparently');
+						} else if (window.navigator.userAgent.indexOf('Edge') > -1) { // it's Edge
 							document.getElementById(id).scrollIntoView(); // best we can do for now
 						} else {
 							window.scrollTo({
