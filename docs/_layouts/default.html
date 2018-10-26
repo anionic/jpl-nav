@@ -241,7 +241,9 @@
 							'left': 0,
 							'top': document.getElementById(id).offsetTop - 50
 						});
-					} finally {}
+					} catch (error) {
+						document.getElementById(id).scrollIntoView(); /* experiment, lest scrollTo NYI */
+					}
 				}
 			</script>
 		</head>
