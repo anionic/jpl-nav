@@ -1,5 +1,5 @@
 
-# / Tutorials / Queries & multi-threaded Java
+# JPL - Tutorials - Queries & multi-threaded Java
 
 In the past, JPL relied on a _single_ underlying Prolog engine that could only have _one query open_ at a time. This presented difficulties for multi-threaded programs in which the programmer had no control over when Queries are executed. While JPL made as much of the High-Level Interface thread-safe as it can, the user still had to make use of synchronization in a limited set of circumstances (namely when queries remained open for extended periods) to ensure that all calls to the High-Level Interface are thread safe.
 
@@ -27,24 +27,23 @@ This means that if one is not careful enough when using a Query iteratively, the
 One way to achieve this is to process _all_ solutions, after which JPL will automatically close the query:
 
 ```java
-    Query query = // obtain Query
-    while (query.hasMoreSolutions()) {
-     Map<String, Term> solution = query.nextSolution();
-     // process solution as quickly as possible...
-     }
+Query query = // obtain Query
+while (query.hasMoreSolutions()) {
+    Map<String, Term> solution = query.nextSolution();
+    // process solution as quickly as possible...
+}
 ```
 Another alternative is to explicitly close the Query once all required work has been done:
 
-
 ```java
-    Query query = // obtain Query
-    int x = 0
-    while (query.hasMoreSolutions() && x < 100) {
-     Map<String, Term> solution = query.nextSolution();
-     // process solution as quickly as possible...
-     x = solution.get("X").intValue;
-     }
-    query.close()
+Query query = // obtain Query
+int x = 0;
+while (query.hasMoreSolutions() && x < 100) {
+    Map<String, Term> solution = query.nextSolution();
+    // process solution as quickly as possible...
+    x = solution.get("X").intValue;
+}
+query.close();
 ```
 
 Observe that we may exit the loop without exhausting all solutions, so we make sure we close the query.
@@ -62,20 +61,20 @@ a JVM thread may nest two or more active queries, thus forming a _stack_ of open
 For example, this will work well:
 
 ```java
-    Query query1 = // obtain Query somehow``
-    for (int i = 0; i < 3 && query.hasMoreSolutions(); ++i) {
-         Map<String, Term> solution = query1.nextSolution();
-         // process solution...
-     }
-     Query query2 = // obtain new Query somehow
-     while (query2.hasMoreSolutions()) { // process all query2: open, process fully, close
-         Map<String, Term> solution = query2.nextSolution();
-         // process solution...
-     }
-     while (query1.hasMoreSolutions()) { // finish processing query1
-         Map<String, Term> solution = query2.nextSolution();
-         // process solution...
-     }
+Query query1 = // obtain Query somehow``
+for (int i = 0; i < 3 && query.hasMoreSolutions(); ++i) {
+     Map<String, Term> solution = query1.nextSolution();
+     // process solution...
+ }
+ Query query2 = // obtain new Query somehow
+ while (query2.hasMoreSolutions()) { // process all query2: open, process fully, close
+     Map<String, Term> solution = query2.nextSolution();
+     // process solution...
+ }
+ while (query1.hasMoreSolutions()) { // finish processing query1
+     Map<String, Term> solution = query2.nextSolution();
+     // process solution...
+ }
 ```
 
 Here, while `query1` remains open while processing `query2`, new solutions for `query1` are only fetched _after `query2` has closed_ due to solution exhaustion. Observe that because  `query1` remains open, `query2` will run on the same attached engine.
@@ -83,34 +82,34 @@ Here, while `query1` remains open while processing `query2`, new solutions for `
 On the other hand, suppose we try to fetch a next solution for `query1` while `query2` is still open and active:
 
 ```java
-    Query query1 = // obtain Query somehow``
-    for (int i = 0; i < 3 && query.hasMoreSolutions(); ++i) {
-         Map<String, Term> solution = query1.nextSolution();
-         // process solution for query1
-     } 
-     Query query2 = // obtain new Query somehow
-     while (query2.hasMoreSolutions()) { // process all query2: open, process fully, close
-         Map<String, Term> solution = query2.nextSolution();
-         // process solution for query2
+Query query1 = // obtain Query somehow
+for (int i = 0; i < 3 && query.hasMoreSolutions(); ++i) {
+     Map<String, Term> solution = query1.nextSolution();
+     // process solution for query1
+} 
+Query query2 = // obtain new Query somehow
+while (query2.hasMoreSolutions()) { // process all query2: open, process fully, close
+    Map<String, Term> solution = query2.nextSolution();
+    // process solution for query2
 
-         if (query1.hasMoreSolutions()) {  // THIS MAY/WILL BREAK! nested query2 is still open/active
-              Map<String, Term> solution = query1.nextSolution();
-             // process new solution for query1...
-         }
-      }
+    if (query1.hasMoreSolutions()) {  // THIS MAY/WILL BREAK! nested query2 is still open/active
+        Map<String, Term> solution = query1.nextSolution();
+        // process new solution for query1...
+    }
+}
 ```
 
 This will break if `query2` can yield more than one solution, because it will stay open at the point that we are trying to a new solutions for `query1`! Remember the open queries form a sort of _stack_ and hence one can only operate on the query at the top of the stack, the "active" one. This code will yield an error of this form:
 
 ```bash
-    [Thread 1 (main) at Thu Oct  4 19:42:08 2018] pl-vmi.c:2024: PL_next_solution: Assertion failed: FR == &QF>top_frame
+[Thread 1 (main) at Thu Oct  4 19:42:08 2018] pl-vmi.c:2024: PL_next_solution: Assertion failed: FR == &QF>top_frame
 
-     C-stack trace labeled "assert_fail":
-      [0] PL_strtod() at ??:? [0x7fd791e00ff4]
-      [1] __assert_fail() at ??:? [0x7fd791dd0127]
-      [2] PL_next_solution() at ??:? [0x7fd791d4910a]
-      [3] Java_org_jpl7_fli_Prolog_next_1solution() at ??:? [0x7fd7716142a1]
-    Aborted
+ C-stack trace labeled "assert_fail":
+  [0] PL_strtod() at ??:? [0x7fd791e00ff4]
+  [1] __assert_fail() at ??:? [0x7fd791dd0127]
+  [2] PL_next_solution() at ??:? [0x7fd791d4910a]
+  [3] Java_org_jpl7_fli_Prolog_next_1solution() at ??:? [0x7fd7716142a1]
+Aborted
 ```
 
 For sure, you do not want to see this... :-)
@@ -123,10 +122,10 @@ Passing Queries around threads is dangerous, due to the way that these are assoc
 In principle, a `Query` object can be passed to another thread, as long as it has _not_ yet been opened. Trying to pass an open Query to another thread will result in segmentation fault:
 
 ```bash
-    JRE version: Java(TM) SE Runtime Environment (8.0_181-b13) (build 1.8.0_181-b13)
-    # Java VM: Java HotSpot(TM) 64-Bit Server VM (25.181-b13 mixed mode linux-amd64 compressed oops)
-    # Problematic frame:
-    # C  [libswipl.so+0x32a7a]  PL_next_solution+0x9a
+JRE version: Java(TM) SE Runtime Environment (8.0_181-b13) (build 1.8.0_181-b13)
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (25.181-b13 mixed mode linux-amd64 compressed oops)
+# Problematic frame:
+# C  [libswipl.so+0x32a7a]  PL_next_solution+0x9a
 ```
 
 Interestingly, one can pass a _closed_ query object to other threads, even to multiple ones. These threads can then "activate" the query (by fetching its next solution) and iterate through its solutions. Said so, things can become quite tricky when doing so. Since at any point in time:
